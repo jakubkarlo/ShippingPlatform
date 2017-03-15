@@ -7,7 +7,6 @@ using Dapper;
 using Dapper.FluentMap;
 using Dapper.FluentMap.Mapping;
 
-
 namespace ShippingPlatform.Database
   
 {
@@ -15,7 +14,7 @@ namespace ShippingPlatform.Database
     {
         public AddressMapper()
         {
-            Map(x => x.id).ToColumn("addresID");
+            Map(x => x.id).ToColumn("addressID");
             Map(x => x.country).ToColumn("country");
             Map(x => x.city).ToColumn("city");
             Map(x => x.zipcode).ToColumn("zipcode");
