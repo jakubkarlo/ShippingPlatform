@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShippingPlatform
 {
-    public class Package
+    public class Package : BaseObject 
     {
         public double height { get; set; }
         public double width { get; set; }

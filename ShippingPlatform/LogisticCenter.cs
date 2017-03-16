@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShippingPlatform
 {
-    public class LogisticCenter
+    public class LogisticCenter : BaseObject
     {
         public string name { get; set; }
         public Address logisticCenterAddress { get; set; }

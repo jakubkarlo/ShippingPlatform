@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Address.cs" />
+    <Compile Include="BaseObject.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="LogisticCenter.cs" />
     <Compile Include="Notification.cs" />

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShippingPlatform
 {
-    public class Client
+    public class Client : BaseObject
     {
         public Address clientAddress { get; set; }
         public Order order { get; set; }

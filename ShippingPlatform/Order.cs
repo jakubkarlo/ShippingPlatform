@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ShippingPlatform
 {
-    public class Order
+    public class Order : BaseObject
     {
         public Address recipientAddress { get; set; }
         public Address clientAddress { get; set; }

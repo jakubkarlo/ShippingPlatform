@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShippingPlatform
 {
-    public class Route
+    public class Route : BaseObject
     {
         public Address startAddress { get; set; }
         public Address endAddress { get; set; }
