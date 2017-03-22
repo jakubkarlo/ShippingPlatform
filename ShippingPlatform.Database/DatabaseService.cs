@@ -14,18 +14,6 @@ namespace ShippingPlatform.Database
 {
     public class DatabaseService
     {
-        public Address Get(IDbConnection connection, int searchId)
-        {
-            return connection.Query<Address>(
-            "SELECT * FROM addresses ",
-            new { id = searchId }).FirstOrDefault();
-        }
-
-        public IEnumerable<Address> GetAll(IDbConnection connection)
-        {
-            return connection.Query<Address>(
-            "SELECT * FROM addresses").ToList();
-        }
 
         public IDbConnection getConnection()
         {

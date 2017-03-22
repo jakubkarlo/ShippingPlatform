@@ -13,7 +13,17 @@ namespace DatabaseTest
         static void Main(string[] args)
         {
             DatabaseService service = new DatabaseService();
-            service.Get(service.getConnection(),1);
+
+            //service.openConnection(service.getConnection()); why? 
+
+            AddressService addressService = new AddressService();
+
+ 
+            Console.WriteLine(addressService.getOne(service.getConnection(), 2).city);
+
+
+          
+          
         }
     }
 }
