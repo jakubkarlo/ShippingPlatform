@@ -13,8 +13,8 @@ namespace ShippingPlatform.Database
         {
             Map(x => x.id).ToColumn("routeID");
             //int or Address?
-            Map(x => x.startAddress).ToColumn("startAddressID");
-            Map(x => x.endAddress).ToColumn("endAddressID");
+            Map(x => x.startAddressID).ToColumn("startAddressID");
+           // Map(x => x.endAddress).ToColumn("endAddressID");
 
             Map(x => x.startTime).ToColumn("startTime");
             Map(x => x.endTime).ToColumn("endTime");

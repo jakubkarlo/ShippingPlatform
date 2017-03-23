@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ShippingPlatform.Database
 {
-    class RouteService
+    public class RouteService
     {
         private RouteRepository routeRepository = new RouteRepository();
 

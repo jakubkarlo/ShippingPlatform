@@ -14,15 +14,9 @@ namespace DatabaseTest
         {
             DatabaseService service = new DatabaseService();
 
-            //service.openConnection(service.getConnection()); why? 
+            RouteService addressService = new RouteService();
 
-            AddressService addressService = new AddressService();
-
- 
-            Console.WriteLine(addressService.getOne(service.getConnection(), 2).city);
-
-
-          
+            Console.WriteLine(addressService.getOne(service.getConnection(), 1).startAddress);    
           
         }
     }
