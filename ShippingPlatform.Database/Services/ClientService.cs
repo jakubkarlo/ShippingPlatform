@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ShippingPlatform.Database
 {
-    class ClientService
+    public class ClientService
     {
         private ClientRepository clientRepository = new ClientRepository();
 

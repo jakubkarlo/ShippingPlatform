@@ -15,8 +15,8 @@ namespace ShippingPlatform.Database
         {
             Map(x => x.id).ToColumn("logisticCenterID");
             Map(x => x.name).ToColumn("name");
-            Map(x => x.logisticCenterAddress).ToColumn("addressID");
-            Map(x => x.shippingRoute).ToColumn("shippingRouteID");
+            Map(x => x.logisticCenterAddressID).ToColumn("addressID");
+            Map(x => x.shippingRouteID).ToColumn("shippingRouteID");
         }
     }
 }

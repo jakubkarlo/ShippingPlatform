@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ShippingPlatform.Database
 {
-    class NotificationService
+    public class NotificationService
     {
         private NotificationRepository notificationRepository = new NotificationRepository();
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ShippingPlatform.Database
 {
-    class PackageService
+    public class PackageService
     {
         private PackageRepository packageRepository = new PackageRepository();
 

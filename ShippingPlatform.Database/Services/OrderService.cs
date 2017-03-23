@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ShippingPlatform.Database
 {
-    class OrderService
+    public class OrderService
     {
         private OrderRepository orderRepository = new OrderRepository();
 

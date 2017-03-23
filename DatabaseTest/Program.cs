@@ -14,10 +14,22 @@ namespace DatabaseTest
         {
             DatabaseService service = new DatabaseService();
 
-            RouteService addressService = new RouteService();
+            AddressService addressService = new AddressService();
+            ClientService client = new ClientService();
+            LogisticCenterService center = new LogisticCenterService();
+            NotificationService notify = new NotificationService();
+            OrderService order = new OrderService();
+            PackageService package = new PackageService();
+            RouteService route = new RouteService();
 
-            Console.WriteLine(addressService.getOne(service.getConnection(), 1).startAddress);    
-          
+            Console.WriteLine(addressService.getOne(service.getConnection(), 1)+"\n");
+            Console.WriteLine(client.getOne(service.getConnection(), 1)+"\n");
+            Console.WriteLine(center.getOne(service.getConnection(), 1) + "\n");
+            Console.WriteLine(notify.getOne(service.getConnection(), 1) + "\n");
+            Console.WriteLine(order.getOne(service.getConnection(), 1) + "\n");
+            Console.WriteLine(package.getOne(service.getConnection(), 1) + "\n");
+            Console.WriteLine(route.getOne(service.getConnection(), 1) + "\n");
+
         }
     }
 }

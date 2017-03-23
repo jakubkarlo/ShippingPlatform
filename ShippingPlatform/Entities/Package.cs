@@ -13,5 +13,15 @@ namespace ShippingPlatform
         public double depth { get; set; }
         public double weight { get; set; }
         public string content { get; set; }
+
+        public override string ToString()
+        {
+            return "Package ID: " + id +
+                "\nHeight: " + height +
+                "\nWidth: " + width +
+                "\nDepth: " + depth +
+                "\nWeight: " + weight +
+                "\nContent: " + content + "\n";
+        }
     }
 }

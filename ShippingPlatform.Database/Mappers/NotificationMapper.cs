@@ -18,6 +18,7 @@ namespace ShippingPlatform.Database
             Map(x => x.message).ToColumn("message");
             Map(x => x.subject).ToColumn("subject");
             Map(x => x.timestamp).ToColumn("timestamp");
+            Map(x => x.orderID).ToColumn("orderID");
             Map(x => x.attachmentID).ToColumn("attachmentID");
         }
     }
