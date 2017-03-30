@@ -1,0 +1,15 @@
+D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\DatabaseTest\bin\Debug\DatabaseTest.exe.config
+D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\DatabaseTest\bin\Debug\DatabaseTest.exe
+D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\DatabaseTest\bin\Debug\DatabaseTest.pdb
+D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\DatabaseTest\obj\Debug\DatabaseTest.csprojResolveAssemblyReference.cache
+D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\DatabaseTest\obj\Debug\DatabaseTest.exe
+D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\DatabaseTest\obj\Debug\DatabaseTest.pdb
+D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\DatabaseTest\bin\Debug\ShippingPlatform.Database.dll
+D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\DatabaseTest\bin\Debug\ShippingPlatform.dll
+D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\DatabaseTest\bin\Debug\Dapper.FluentMap.dll
+D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\DatabaseTest\bin\Debug\MySql.Data.dll
+D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\DatabaseTest\bin\Debug\Dapper.dll
+D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\DatabaseTest\bin\Debug\ShippingPlatform.Database.pdb
+D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\DatabaseTest\bin\Debug\ShippingPlatform.pdb
+D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\DatabaseTest\bin\Debug\Dapper.FluentMap.xml
+D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\DatabaseTest\bin\Debug\Dapper.xml

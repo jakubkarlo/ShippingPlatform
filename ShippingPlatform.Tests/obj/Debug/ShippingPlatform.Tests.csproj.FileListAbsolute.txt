@@ -1,0 +1,9 @@
+D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\ShippingPlatform.Tests\obj\Debug\ShippingPlatform.Tests.csprojResolveAssemblyReference.cache
+D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\ShippingPlatform.Tests\bin\Debug\ShippingPlatform.Tests.dll
+D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\ShippingPlatform.Tests\bin\Debug\ShippingPlatform.Tests.pdb
+D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\ShippingPlatform.Tests\bin\Debug\nunit.framework.dll
+D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\ShippingPlatform.Tests\bin\Debug\ShippingPlatform.dll
+D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\ShippingPlatform.Tests\bin\Debug\ShippingPlatform.pdb
+D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\ShippingPlatform.Tests\bin\Debug\nunit.framework.xml
+D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\ShippingPlatform.Tests\obj\Debug\ShippingPlatform.Tests.dll
+D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\ShippingPlatform.Tests\obj\Debug\ShippingPlatform.Tests.pdb
