@@ -22,7 +22,7 @@ namespace ShippingPlatform.Database
                 client.order = order;
                 return client;
             },
-            new { id = searchId }, null, false , "addressID,orderID").FirstOrDefault();
+            new { id = searchId }, splitOn: "addressID,orderID").FirstOrDefault();
         }
 
         public IEnumerable<Client> GetAll(IDbConnection connection)

@@ -25,6 +25,7 @@ namespace ShippingPlatform.Database
             new { id = searchId },null,false, "addressID, routeID").FirstOrDefault();
         }
 
+
         public IEnumerable<LogisticCenter> GetAll(IDbConnection connection)
         {
             return connection.Query<LogisticCenter>(
