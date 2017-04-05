@@ -12,15 +12,31 @@ namespace ShippingPlatform.Database
     {
         public Order Get(IDbConnection connection, int searchId)
         {
-            return connection.Query<Order>(
-            "SELECT * FROM orders WHERE orderID = @id",
-            new { id = searchId }).FirstOrDefault();
+            return connection.Query<Order,Address,Address,Order>(
+            @"SELECT * FROM orders
+            INNER JOIN addresses a1 ON orders.recipientAddressID = a1.addressID
+            INNER JOIN addresses a2 ON orders.clientAddressID = a2.addressID
+            WHERE orderID = @id",
+             (order, firstAddress, secondAddress) => {
+                 order.recipientAddress = firstAddress;
+                 order.clientAddress = secondAddress;
+                 return order;
+             },
+            new { id = searchId }, null, false, "addressID").FirstOrDefault();
         }
 
         public IEnumerable<Order> GetAll(IDbConnection connection)
         {
-            return connection.Query<Order>(
-            "SELECT * FROM orders").ToList();
+            return connection.Query<Order, Address, Address, Order>(
+           @"SELECT * FROM orders
+            INNER JOIN addresses a1 ON orders.recipientAddressID = a1.addressID
+            INNER JOIN addresses a2 ON orders.clientAddressID = a2.addressID",
+            (order, firstAddress, secondAddress) => {
+                order.recipientAddress = firstAddress;
+                order.clientAddress = secondAddress;
+                return order;
+            },
+           splitOn: "addressID").ToList();
         }
     }
 }

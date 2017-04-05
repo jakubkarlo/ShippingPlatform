@@ -28,8 +28,16 @@ namespace ShippingPlatform.Database
 
         public IEnumerable<LogisticCenter> GetAll(IDbConnection connection)
         {
-            return connection.Query<LogisticCenter>(
-            "SELECT * FROM logistic_centers").ToList();
+            return connection.Query<LogisticCenter,Address,Route,LogisticCenter>(
+            @"SELECT * FROM logistic_centers 
+            INNER JOIN addresses  ON logistic_centers.addressID = addresses.addressID
+            INNER JOIN routes  ON logistic_centers.shippingRouteID = routes.routeID",
+            (center, address, route) =>{
+                center.logisticCenterAddress = address;
+                center.shippingRoute = route;
+                return center;
+            },
+             splitOn:"addressID, routeID").ToList();
         }
     }
 }

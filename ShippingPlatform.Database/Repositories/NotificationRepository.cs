@@ -26,8 +26,15 @@ namespace ShippingPlatform.Database
 
         public IEnumerable<Notification> GetAll(IDbConnection connection)
         {
-            return connection.Query<Notification>(
-            "SELECT * FROM notifications").ToList();
+            return connection.Query<Notification,Order,Notification>(
+            @"SELECT * FROM notifications
+            INNER JOIN orders ON notifications.orderID = orders.orderID" ,
+            (notification, order) =>
+            {
+                notification.order = order;
+                return notification;
+            },
+             splitOn:"orderID").ToList();
         }
     }
 }

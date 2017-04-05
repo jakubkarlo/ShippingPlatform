@@ -27,8 +27,16 @@ namespace ShippingPlatform.Database
 
         public IEnumerable<Client> GetAll(IDbConnection connection)
         {
-            return connection.Query<Client>(
-            "SELECT * FROM clients").ToList();
+            return connection.Query<Client,Address,Order,Client>(
+             @"SELECT * FROM clients 
+            INNER JOIN addresses ON clients.clientAddressID = addresses.addressID
+            INNER JOIN orders ON clients.orderID = orders.orderID",
+            (client, address, order) => {
+                client.clientAddress = address;
+                client.order = order;
+                return client;
+            },
+             splitOn: "addressID,orderID").ToList();
         }
     }
 }
