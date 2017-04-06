@@ -17,6 +17,7 @@ namespace ShippingPlatform.Database
             Map(x => x.depth).ToColumn("depth");
             Map(x => x.weight).ToColumn("weight");
             Map(x => x.content).ToColumn("content");
+            Map(x => x.orderID).ToColumn("orderID");
         }
     }
 }
