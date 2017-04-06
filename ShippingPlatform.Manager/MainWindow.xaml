@@ -5,23 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShippingPlatform.Manager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
+        Title="MainWindow" Height="400" Width="560">
+    <Grid Name="address" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="70"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="1" Margin="5">
-            <Button.Content>
-                <Label>Hit me</Label><!--You can also introduce images -->
-            </Button.Content>
-            <Button.Background>
+        <TextBox Grid.Row="0" Grid.Column="0" Margin="0" Text="{Binding Path=Name}">
+            <TextBox.Background>
                 <LinearGradientBrush>
                     <GradientStopCollection>
                         <GradientStop Color="BlueViolet" Offset="0.0"></GradientStop>
                         <GradientStop Color="Blue" Offset="1.0"></GradientStop>                    
                     </GradientStopCollection>
                 </LinearGradientBrush>
-            </Button.Background>
-        </Button>
+            </TextBox.Background>
+        </TextBox>
     </Grid>
 </Window>
