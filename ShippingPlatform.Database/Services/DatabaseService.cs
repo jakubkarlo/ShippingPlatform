@@ -24,6 +24,7 @@ namespace ShippingPlatform.Database
             connectionBuilder.UserID = "root";
             connectionBuilder.Password = "root";
             connectionBuilder.Database = "shippingplatform";
+            //connectionBuilder.AllowUserVariables = true;
 
             string connectionString = connectionBuilder.GetConnectionString(true);
 

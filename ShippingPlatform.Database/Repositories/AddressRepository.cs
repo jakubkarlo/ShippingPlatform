@@ -24,22 +24,26 @@ namespace ShippingPlatform.Database
             "SELECT * FROM addresses").ToList();
         }
 
-        //public void Insert(IDbConnection connection, string country, string city, string zipcode, string street, int housenumber)
-        //{
-        //    using (SqlCommand cmd = new SqlCommand(@"INSERT INTO `shippingplatform`.`addresses` (`country`, `city`, `zipcode`, `street`, `housenumber`) 
-        //        VALUES(country, city, zipcode, street, housenumber)"))
-        //    {
-        //        cmd.Parameters.AddWithValue("@country", country);
-        //        cmd.Parameters.AddWithValue("@city", city);
-        //        cmd.Parameters.AddWithValue("@zipcode", zipcode);
-        //        cmd.Parameters.AddWithValue("@street", street);
-        //        cmd.Parameters.AddWithValue("@housenumber", housenumber);
-        //        cmd.ExecuteNonQuery();
+        public IEnumerable<Address> Delete(IDbConnection connection, int searchId)
+        {
+            return connection.Query<Address>("DELETE FROM addresses WHERE addressID = @id", new { id = searchId }); 
+        }
 
-        //    }
-        //   ;
+        public IEnumerable<Address> Insert(IDbConnection connection, Address newAddress)
+        {
+            return connection.Query<Address>("INSERT INTO addresses(country, city, zipcode, street, housenumber) values(@country, @city, @zipcode, @street, @housenumber)",
+                new { country = newAddress.country, city = newAddress.city, zipcode = newAddress.zipcode, street = newAddress.street, housenumber = newAddress.housenumber });
 
-        //}
+        }
+
+
+        public IEnumerable<Address> Update(IDbConnection connection, int searchID, Address newAddress) {
+
+            return connection.Query<Address>("UPDATE addresses SET country=@country, city=@city,zipcode=@zipcode,street=@street,housenumber=@housenumber WHERE addressID=@id",
+                new { id = searchID, country = newAddress.country, city = newAddress.city, zipcode = newAddress.zipcode, street = newAddress.street, housenumber = newAddress.housenumber });
+
+        }
+
 
     }
 }
