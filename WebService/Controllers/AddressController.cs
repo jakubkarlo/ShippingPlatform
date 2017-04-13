@@ -44,6 +44,7 @@ namespace WebService.Controllers
         [HttpDelete]
         public IHttpActionResult delete([FromUri]int id)
         {
+            //Address addressToDelete = addressService.Delete(db.getConnection(), id);
             return NotFound();
         }
 

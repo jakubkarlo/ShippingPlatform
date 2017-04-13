@@ -24,23 +24,23 @@ namespace ShippingPlatform.Database
             "SELECT * FROM addresses").ToList();
         }
 
-        public IEnumerable<Address> Delete(IDbConnection connection, int searchId)
+        public Address Delete(IDbConnection connection, int searchId)
         {
-            return connection.Query<Address>("DELETE FROM addresses WHERE addressID = @id", new { id = searchId }); 
+            return connection.Query<Address>("DELETE FROM addresses WHERE addressID = @id", new { id = searchId }).FirstOrDefault(); 
         }
 
-        public IEnumerable<Address> Insert(IDbConnection connection, Address newAddress)
+        public Address Insert(IDbConnection connection, Address newAddress)
         {
             return connection.Query<Address>("INSERT INTO addresses(country, city, zipcode, street, housenumber) values(@country, @city, @zipcode, @street, @housenumber)",
-                new { country = newAddress.country, city = newAddress.city, zipcode = newAddress.zipcode, street = newAddress.street, housenumber = newAddress.housenumber });
+                new { country = newAddress.country, city = newAddress.city, zipcode = newAddress.zipcode, street = newAddress.street, housenumber = newAddress.housenumber }).FirstOrDefault();
 
         }
 
 
-        public IEnumerable<Address> Update(IDbConnection connection, int searchID, Address newAddress) {
+        public Address Update(IDbConnection connection, int searchID, Address newAddress) {
 
             return connection.Query<Address>("UPDATE addresses SET country=@country, city=@city,zipcode=@zipcode,street=@street,housenumber=@housenumber WHERE addressID=@id",
-                new { id = searchID, country = newAddress.country, city = newAddress.city, zipcode = newAddress.zipcode, street = newAddress.street, housenumber = newAddress.housenumber });
+                new { id = searchID, country = newAddress.country, city = newAddress.city, zipcode = newAddress.zipcode, street = newAddress.street, housenumber = newAddress.housenumber }).FirstOrDefault();
 
         }
 

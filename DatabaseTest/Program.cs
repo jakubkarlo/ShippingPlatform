@@ -31,7 +31,10 @@ namespace DatabaseTest
             PackageService package = new PackageService();
             RouteService route = new RouteService();
 
-           
+            addressService.Delete(service.getConnection(), 7);
+            addressService.Insert(service.getConnection(), a1);
+            a1.city = "NotSeoul";
+            addressService.Update(service.getConnection(), 8, a1);
 
             foreach (var a in client.getAll(service.getConnection()))
             {
