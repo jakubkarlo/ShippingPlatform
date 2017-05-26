@@ -13,38 +13,34 @@ namespace WebService.Controllers
     {
 
         private DatabaseService db;
-        private ClientService ClientService;
+        private ClientService clientService;
 
         public ClientController()
         {
             db = new DatabaseService();
-            ClientService = new ClientService();
+            clientService = new ClientService();
         }
 
         [HttpGet]
         public IHttpActionResult GetAll()
         {        
-            List<Client> allClients = (List<Client>)ClientService.getAll(db.getConnection());
+            List<Client> allClients = (List<Client>)clientService.getAll(db.getConnection());
             return Ok(allClients);
         }
 
         [HttpGet]
         public IHttpActionResult getOne(int id)
         {
-            Client specificClient = ClientService.getOne(db.getConnection(), id);
+            Client specificClient = clientService.getOne(db.getConnection(), id);
             return Ok(specificClient);
         }
 
-        //public IHttpActionResult search(string searchTerm)
-        //{
-        //    List<Client> searchResult = ClientService.Search(searchTerm);
-        //    return Ok(searchResult);
-        //}
 
         [HttpDelete]
-        public IHttpActionResult delete([FromUri]int id)
+        public IHttpActionResult Delete([FromUri]int id)
         {
-            return NotFound();
+           Client clientToDelete = clientService.Delete(db.getConnection(), id);
+            return Ok(clientToDelete);
         }
 
         [HttpPost]

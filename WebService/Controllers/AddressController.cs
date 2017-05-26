@@ -1,4 +1,6 @@
-﻿using ShippingPlatform;
+﻿
+
+using ShippingPlatform;
 using ShippingPlatform.Database;
 using System;
 using System.Collections.Generic;
@@ -6,11 +8,16 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.UI;
 
 namespace WebService.Controllers
 {
+
+
     public class AddressController : ApiController
     {
+
+
 
         private DatabaseService db;
         private AddressService addressService;
@@ -29,7 +36,7 @@ namespace WebService.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult getOne(int id)
+        public IHttpActionResult GetOne(int id)
         {
             Address specificAddress = addressService.getOne(db.getConnection(), id);
             return Ok(specificAddress);
@@ -42,24 +49,41 @@ namespace WebService.Controllers
         //}
 
         [HttpDelete]
-        public IHttpActionResult delete([FromUri]int id)
+        public IHttpActionResult Delete([FromUri]int id)
         {
-            //Address addressToDelete = addressService.Delete(db.getConnection(), id);
-            return NotFound();
+            Address addressToDelete = addressService.Delete(db.getConnection(), id);
+            return Ok(addressToDelete);
         }
 
-        [HttpPost]
-        public IHttpActionResult Save([FromBody]Address address) // we want to add it from body json object
+        [HttpPut]
+        public IHttpActionResult Add()
         {
-            try {
-                // do some stuff here
-                //new AddressService.Save(address);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.ToString());
-            }
+            //ClientScriptManager.RegisterClientScriptBlock(typeof(Page), "ClientScript", "<script> alert('Inserted successfully');</script>", true);
+            Address a1 = new Address();
+            a1.country = "Korea";
+            a1.city = "HSeoul";
+            a1.zipcode = "345325";
+            a1.street = "chanukunho";
+            a1.housenumber = 12;
+            Address addressToAdd = addressService.Insert(db.getConnection(), a1);
+            return Ok(addressToAdd);
         }
+
+        [HttpPut]
+        public IHttpActionResult Update([FromUri]int id)
+        {
+
+            Address a1 = new Address();
+            a1.country = "Korea";
+            a1.city = "HSeoul";
+            a1.zipcode = "345325";
+            a1.street = "chanusfsrfsrfseunho";
+            a1.housenumber = 12;
+            Address addressToUpdate = addressService.Update(db.getConnection(), id, a1);
+            return Ok(addressToUpdate);
+        }
+
+
+     
     }
 }

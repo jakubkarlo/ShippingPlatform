@@ -46,5 +46,26 @@ namespace ShippingPlatform.Database
             },
              splitOn: "addressID,orderID,addressID,addressID").ToList();
         }
+
+        public Client Delete(IDbConnection connection, int searchId)
+        {
+            return connection.Query<Client>("DELETE FROM clients WHERE clientID = @id", new { id = searchId }).FirstOrDefault();
+        }
+
+        //public Address Insert(IDbConnection connection, Address newAddress)
+        //{
+        //    return connection.Query<Address>("INSERT INTO addresses(country, city, zipcode, street, housenumber) values(@country, @city, @zipcode, @street, @housenumber)",
+        //        new { country = newAddress.country, city = newAddress.city, zipcode = newAddress.zipcode, street = newAddress.street, housenumber = newAddress.housenumber }).FirstOrDefault();
+
+        //}
+
+
+        //public Address Update(IDbConnection connection, int searchID, Address newAddress)
+        //{
+
+        //    return connection.Query<Address>("UPDATE addresses SET country=@country, city=@city,zipcode=@zipcode,street=@street,housenumber=@housenumber WHERE addressID=@id",
+        //        new { id = searchID, country = newAddress.country, city = newAddress.city, zipcode = newAddress.zipcode, street = newAddress.street, housenumber = newAddress.housenumber }).FirstOrDefault();
+
+        //}
     }
 }

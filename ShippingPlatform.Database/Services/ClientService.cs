@@ -20,5 +20,11 @@ namespace ShippingPlatform.Database
         {
             return clientRepository.GetAll(connection);
         }
+
+        public Client Delete(IDbConnection connection, int searchID)
+        {
+            return clientRepository.Delete(connection, searchID);
+        }
+
     }
 }

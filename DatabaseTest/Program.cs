@@ -12,13 +12,6 @@ namespace DatabaseTest
     {
         static void Main(string[] args)
         {
-            // maybe you'll need constructor with parameters?
-            Address a1 = new Address();
-            a1.country = "Korea";
-            a1.city = "Seoul";
-            a1.zipcode = "345325";
-            a1.street = "Gunho";
-            a1.housenumber = 12;
 
 
             DapperConfiguration.Configure();
@@ -30,11 +23,6 @@ namespace DatabaseTest
             OrderService order = new OrderService();
             PackageService package = new PackageService();
             RouteService route = new RouteService();
-
-            addressService.Delete(service.getConnection(), 7);
-            addressService.Insert(service.getConnection(), a1);
-            a1.city = "NotSeoul";
-            addressService.Update(service.getConnection(), 8, a1);
 
             foreach (var a in client.getAll(service.getConnection()))
             {
@@ -64,7 +52,7 @@ namespace DatabaseTest
 
             //Console.WriteLine(addressService.getOne(service.getConnection(), 1)+"\n");
             //Console.WriteLine(client.getOne(service.getConnection(), 1)+"\n");
-            Console.WriteLine(center.getOne(service.getConnection(), 1) + "\n");
+            //Console.WriteLine(center.getOne(service.getConnection(), 1) + "\n");
             //Console.WriteLine(notify.getOne(service.getConnection(), 1) + "\n");
             //Console.WriteLine(order.getOne(service.getConnection(), 1) + "\n");
             //Console.WriteLine(package.getOne(service.getConnection(), 1) + "\n");

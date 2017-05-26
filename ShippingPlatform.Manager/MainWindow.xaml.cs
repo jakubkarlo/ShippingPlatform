@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Configuration;
+using System.ComponentModel;
 
 namespace ShippingPlatform.Manager
 {
@@ -24,27 +25,44 @@ namespace ShippingPlatform.Manager
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
-            FillDataGrid();
+
+            addresses.DataContext = new AddressesViewModel();
+            //clients.DataContext = new ClientsViewModel();
+
         }
 
-
-        private void FillDataGrid()
+        private void AddAddressBtn_Click(object sender, RoutedEventArgs e)
         {
-            string ConString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
-            string CmdString = string.Empty;
-            
-            using (SqlConnection con = new SqlConnection(ConString))
-            {
-                CmdString = "SELECT* FROM addresses WHERE addressID = @id";
-                SqlCommand cmd = new SqlCommand(CmdString, con);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("Address");
-                sda.Fill(dt);
-                address.ItemsSource = dt.DefaultView;
+
+            try {
+                if (ad_country.Text == null || ad_city.Text == null|| ad_street.Text == null || ad_housenumber.Text == null || ad_zipcode.Text == null)
+                {
+                    throw new Exception();
+                }
+                Address addressToAdd = new Address();
+                addressToAdd.country = ad_country.Text;
+                addressToAdd.city = ad_city.Text;
+                addressToAdd.street = ad_street.Text;
+                addressToAdd.housenumber = Int32.Parse(ad_housenumber.Text);
+                addressToAdd.zipcode = ad_zipcode.Text;
+                DatabaseService databaseService = new DatabaseService();
+                AddressService addressService = new AddressService();
+                addressService.Insert(databaseService.getConnection(), addressToAdd);
+                MessageBoxResult messageBox = MessageBox.Show("New address inserted successfully!", "Success!");
             }
+            catch(Exception)
+            {
+                MessageBoxResult messageBox = MessageBox.Show("Hola Hola! I don't like empty addresses! Fill all of the data fields and try again!", "Empty field alert");
+
+            }
+
+
         }
+
+
     }
 }

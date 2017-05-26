@@ -5,37 +5,95 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShippingPlatform.Manager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="560">
-    <Grid Name="address" >
+        Title="MainWindow" Height="500" Width="800">
+    <Window.Resources>
+        <!--<local:className x:Key="randomName"> 
+        Then in the code: Rectangle Fill = "Binding Path Password, Mode oneway, Converter ={StaticResource randomName-->
+    </Window.Resources>
+
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="70"/>
-            <ColumnDefinition Width="70"/>
-            <ColumnDefinition Width="70"/>
-            <ColumnDefinition Width="70"/>
-            <ColumnDefinition Width="70"/>
-            <ColumnDefinition Width="70"/>
-            <ColumnDefinition Width="70"/>
-            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="300"></ColumnDefinition>
+            <ColumnDefinition Width="500"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-        </Grid.RowDefinitions>
-        <TextBox Grid.Row="0" Grid.Column="0" Margin="0" Text="{Binding Path=Name}">
-            <TextBox.Background>
-                <LinearGradientBrush>
-                    <GradientStopCollection>
-                        <GradientStop Color="BlueViolet" Offset="0.0"></GradientStop>
-                        <GradientStop Color="Blue" Offset="1.0"></GradientStop>                    
-                    </GradientStopCollection>
-                </LinearGradientBrush>
-            </TextBox.Background>
-        </TextBox>
+        
+
+
+            <Menu Grid.Column="0">
+            <!--<MenuItem Header="Database Entries" Width="300" ></MenuItem>
+            <MenuItem Header="Add" Width="300" ></MenuItem>
+            <MenuItem Header="Delete" Width="300" ></MenuItem>
+            <MenuItem Header="Different Options" Width="300" ></MenuItem>-->
+            <TextBox Name="ad_country" Width="150"></TextBox>
+            <Label>Country</Label>
+            <TextBox Name="ad_city" Width="150"></TextBox>
+            <Label >City</Label>
+            <TextBox Name="ad_street" Width="150"></TextBox>
+            <Label>Street</Label>
+            <TextBox Name="ad_housenumber" Width="150"></TextBox>
+            <Label >Housenumber</Label>
+            <TextBox Name="ad_zipcode" Width="150"></TextBox>
+            <Label >Zipcode</Label>
+            <Button Width="150" Name="addAddressBtn" Click="AddAddressBtn_Click">Add</Button>
+        </Menu>
+            
+
+
+        <TabControl Grid.Column="1">
+            <TabItem Header="Addresses" Height="22" VerticalAlignment="Top">
+
+                <DataGrid x:Name="addresses"
+                  ItemsSource="{Binding Path=Addresses, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Path=id, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Country" Binding="{Binding Path=country, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="City" Binding="{Binding Path=city, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Street" Binding="{Binding Path=street, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Housenumber" Binding="{Binding Path=housenumber, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Zipcode" Binding="{Binding Path=zipcode, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </TabItem>
+            <TabItem Header="Clients">
+                <DataGrid x:Name="clients"
+                  ItemsSource="{Binding Path=Clients, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Path=id, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Login" Binding="{Binding Path=login, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Password" Binding="{Binding Path=password, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Email" Binding="{Binding Path=emailAddress, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <!--Those two are optional-->
+                        <DataGridTextColumn Header="Address" Binding="{Binding Path=clientAddress, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Order" Binding="{Binding Path=orderID, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <!-- Window.Resources are for global design-->
+                    <!-- you have to make a converter with IConvertValue for example for password strength color converter-->
+
+            </TabItem>
+            <TabItem Header="Logistic Centers">
+                
+            </TabItem>
+
+            <TabItem Header="Notifications">
+
+            </TabItem>
+            <TabItem Header="Orders">
+
+            </TabItem>
+            <TabItem Header="Packages">
+
+            </TabItem>
+            <TabItem Header="Routes">
+
+            </TabItem>
+
+        </TabControl>
+        
+        
     </Grid>
+
 </Window>
