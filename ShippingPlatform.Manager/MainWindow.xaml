@@ -5,95 +5,121 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShippingPlatform.Manager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="800">
+        Title="Amazing Shipping Platform Manager" Height="500" Width="800">
     <Window.Resources>
         <!--<local:className x:Key="randomName"> 
         Then in the code: Rectangle Fill = "Binding Path Password, Mode oneway, Converter ={StaticResource randomName-->
     </Window.Resources>
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"></ColumnDefinition>
-            <ColumnDefinition Width="500"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        
+    <TabControl>
 
+        <TabItem Header="Addresses" Height="22" VerticalAlignment="Top">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"></ColumnDefinition>
+                    <ColumnDefinition Width="500"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
 
-            <Menu Grid.Column="0">
-            <!--<MenuItem Header="Database Entries" Width="300" ></MenuItem>
+                <Menu Grid.Column="0">
+                    <!--<MenuItem Header="Database Entries" Width="300" ></MenuItem>
             <MenuItem Header="Add" Width="300" ></MenuItem>
             <MenuItem Header="Delete" Width="300" ></MenuItem>
             <MenuItem Header="Different Options" Width="300" ></MenuItem>-->
-            <TextBox Name="ad_country" Width="150"></TextBox>
-            <Label>Country</Label>
-            <TextBox Name="ad_city" Width="150"></TextBox>
-            <Label >City</Label>
-            <TextBox Name="ad_street" Width="150"></TextBox>
-            <Label>Street</Label>
-            <TextBox Name="ad_housenumber" Width="150"></TextBox>
-            <Label >Housenumber</Label>
-            <TextBox Name="ad_zipcode" Width="150"></TextBox>
-            <Label >Zipcode</Label>
-            <Button Width="150" Name="addAddressBtn" Click="AddAddressBtn_Click">Add</Button>
-        </Menu>
-            
+                    <TextBox Name="ad_id" Width="150" Background="LightGray" DataContext="{Binding Path=SelectedItem, ElementName=addresses}" Text="{Binding Path=id, Mode=OneWay}" IsReadOnly="True" ></TextBox>
+                    <Label>ID</Label>
+                    <TextBox Name="ad_country" Width="150" DataContext="{Binding Path=SelectedItem, ElementName=addresses}" Text="{Binding Path=country, Mode=OneWay}"></TextBox>
+                    <Label>Country</Label>
+                    <TextBox Name="ad_city" Width="150"  DataContext="{Binding Path=SelectedItem, ElementName=addresses}" Text="{Binding Path=city, Mode=OneWay}"></TextBox>
+                    <Label >City</Label>
+                    <TextBox Name="ad_street" Width="150"  DataContext="{Binding Path=SelectedItem, ElementName=addresses}" Text="{Binding Path=street, Mode=OneWay}"></TextBox>
+                    <Label>Street</Label>
+                    <TextBox Name="ad_housenumber" Width="150"  DataContext="{Binding Path=SelectedItem, ElementName=addresses}" Text="{Binding Path=housenumber, Mode=OneWay}"></TextBox>
+                    <Label >Housenumber</Label>
+                    <TextBox Name="ad_zipcode" Width="150"  DataContext="{Binding Path=SelectedItem, ElementName=addresses}" Text="{Binding Path=zipcode, Mode=OneWay}"></TextBox>
+                    <Label >Zipcode</Label>
+                    <Button Width="150" Name="addAddressBtn" Click="AddAddressBtn_Click">Add</Button>
+                    <Button Width="150" Name="updateAddressBtn" Click="UpdateAddressBtn_Click" >Update
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedItems.Count,ElementName=addresses}"
+                                 Value="0">
+                                        <Setter Property="Visibility"
+                                Value="Hidden" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button Width="150" Name="removeAddressBtn" Click="RemoveAddressBtn_Click" >Remove
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedItems.Count,ElementName=addresses}"
+                                 Value="0">
+                                        <Setter Property="Visibility"
+                                Value="Hidden" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Menu>
 
-
-        <TabControl Grid.Column="1">
-            <TabItem Header="Addresses" Height="22" VerticalAlignment="Top">
-
-                <DataGrid x:Name="addresses"
+                <DataGrid Grid.Column="1" x:Name="addresses"
                   ItemsSource="{Binding Path=Addresses, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   AutoGenerateColumns="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding Path=id, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Country" Binding="{Binding Path=country, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="City" Binding="{Binding Path=city, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Street" Binding="{Binding Path=street, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Housenumber" Binding="{Binding Path=housenumber, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Zipcode" Binding="{Binding Path=zipcode, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-
-            </TabItem>
-            <TabItem Header="Clients">
-                <DataGrid x:Name="clients"
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Path=id, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Country" Binding="{Binding Path=country, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="City" Binding="{Binding Path=city, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Street" Binding="{Binding Path=street, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Housenumber" Binding="{Binding Path=housenumber, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Zipcode" Binding="{Binding Path=zipcode, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+                
+         </Grid>
+        </TabItem>
+        
+        
+        <TabItem Header="Clients">
+            <DataGrid x:Name="clients"
                   ItemsSource="{Binding Path=Clients, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   AutoGenerateColumns="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding Path=id, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Login" Binding="{Binding Path=login, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Password" Binding="{Binding Path=password, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Email" Binding="{Binding Path=emailAddress, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                        <!--Those two are optional-->
-                        <DataGridTextColumn Header="Address" Binding="{Binding Path=clientAddress, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Order" Binding="{Binding Path=orderID, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-                <!-- Window.Resources are for global design-->
-                    <!-- you have to make a converter with IConvertValue for example for password strength color converter-->
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Path=id, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Login" Binding="{Binding Path=login, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Password" Binding="{Binding Path=password, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Email" Binding="{Binding Path=emailAddress, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                    <!--Those two are optional-->
+                    <DataGridTextColumn Header="Address" Binding="{Binding Path=clientAddress, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Order" Binding="{Binding Path=orderID, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <!-- Window.Resources are for global design-->
+            <!-- you have to make a converter with IConvertValue for example for password strength color converter-->
 
-            </TabItem>
-            <TabItem Header="Logistic Centers">
-                
-            </TabItem>
+        </TabItem>
 
-            <TabItem Header="Notifications">
+        <TabItem Header="Logistic Centers">
 
-            </TabItem>
-            <TabItem Header="Orders">
+        </TabItem>
 
-            </TabItem>
-            <TabItem Header="Packages">
+        <TabItem Header="Notifications">
 
-            </TabItem>
-            <TabItem Header="Routes">
+        </TabItem>
+        <TabItem Header="Orders">
 
-            </TabItem>
+        </TabItem>
+        <TabItem Header="Packages">
 
-        </TabControl>
-        
-        
-    </Grid>
+        </TabItem>
+        <TabItem Header="Routes">
+
+        </TabItem>
+ 
+
+ </TabControl>
 
 </Window>

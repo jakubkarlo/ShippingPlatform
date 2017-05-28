@@ -25,21 +25,23 @@ namespace ShippingPlatform.Manager
     /// </summary>
     public partial class MainWindow : Window
     {
+        private AddressesViewModel addrViewModel;
 
         public MainWindow()
         {
             InitializeComponent();
+            addrViewModel = new AddressesViewModel();
 
-            addresses.DataContext = new AddressesViewModel();
-            //clients.DataContext = new ClientsViewModel();
+            addresses.DataContext = addrViewModel;
 
         }
 
         private void AddAddressBtn_Click(object sender, RoutedEventArgs e)
         {
 
-            try {
-                if (ad_country.Text == null || ad_city.Text == null|| ad_street.Text == null || ad_housenumber.Text == null || ad_zipcode.Text == null)
+            try
+            {
+                if (ad_country.Text == null || ad_city.Text == null || ad_street.Text == null || ad_housenumber.Text == null || ad_zipcode.Text == null)
                 {
                     throw new Exception();
                 }
@@ -49,12 +51,11 @@ namespace ShippingPlatform.Manager
                 addressToAdd.street = ad_street.Text;
                 addressToAdd.housenumber = Int32.Parse(ad_housenumber.Text);
                 addressToAdd.zipcode = ad_zipcode.Text;
-                DatabaseService databaseService = new DatabaseService();
-                AddressService addressService = new AddressService();
-                addressService.Insert(databaseService.getConnection(), addressToAdd);
+                addrViewModel.AddAddress(addressToAdd);
+
                 MessageBoxResult messageBox = MessageBox.Show("New address inserted successfully!", "Success!");
             }
-            catch(Exception)
+            catch (Exception)
             {
                 MessageBoxResult messageBox = MessageBox.Show("Hola Hola! I don't like empty addresses! Fill all of the data fields and try again!", "Empty field alert");
 
@@ -63,6 +64,53 @@ namespace ShippingPlatform.Manager
 
         }
 
+        private void UpdateAddressBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (ad_country.Text == null || ad_city.Text == null || ad_street.Text == null || ad_housenumber.Text == null || ad_zipcode.Text == null)
+                {
+                    throw new Exception();
+                }
+                Address addressToUpdate = new Address();
+                addressToUpdate.country = ad_country.Text;
+                addressToUpdate.city = ad_city.Text;
+                addressToUpdate.street = ad_street.Text;
+                addressToUpdate.housenumber = Int32.Parse(ad_housenumber.Text);
+                addressToUpdate.zipcode = ad_zipcode.Text;
+                addrViewModel.UpdateAddress(addressToUpdate, Int32.Parse(ad_id.Text));
+               
+                
 
+
+                MessageBoxResult messageBox = MessageBox.Show("Address updated successfully!", "Success!");
+            }
+            catch (Exception)
+            {
+                MessageBoxResult messageBox = MessageBox.Show("Cannot update! Check if all textboxes are filled and if housenumber doesn't contain letters instead of numbers! Or maybe you tried to update non-existing address?", "Cannot update");
+
+            }
+        }
+
+        private void RemoveAddressBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+            try
+            {
+                if (ad_id.Text == null)
+                {
+                    throw new Exception();
+                }
+
+                addrViewModel.DeleteAddress(Int32.Parse(ad_id.Text));
+                MessageBoxResult messageBox = MessageBox.Show("Address removed successfully!", "Success!");
+            }
+            catch (Exception)
+            {
+                MessageBoxResult messageBox = MessageBox.Show("Please choose the address!", "Cannot delete");
+
+            }
+
+        }
     }
 }

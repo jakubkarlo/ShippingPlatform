@@ -26,61 +26,76 @@ namespace WebService.Controllers
         {
             db = new DatabaseService();
             addressService = new AddressService();
+
         }
 
         [HttpGet]
         public IHttpActionResult GetAll()
-        {        
-            List<Address> allClients = (List<Address>)addressService.getAll(db.getConnection());
-            return Ok(allClients);
+        {
+            try {
+                List<Address> allClients = (List<Address>)addressService.getAll(db.getConnection());
+                return Ok(allClients);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpGet]
         public IHttpActionResult GetOne(int id)
         {
-            Address specificAddress = addressService.getOne(db.getConnection(), id);
-            return Ok(specificAddress);
+            try
+            {
+                Address specificAddress = addressService.getOne(db.getConnection(), id);
+                return Ok(specificAddress);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
-        //public IHttpActionResult search(string searchTerm)
-        //{
-        //    List<Address> searchResult = addressService.Search(searchTerm);
-        //    return Ok(searchResult);
-        //}
 
         [HttpDelete]
         public IHttpActionResult Delete([FromUri]int id)
         {
-            Address addressToDelete = addressService.Delete(db.getConnection(), id);
-            return Ok(addressToDelete);
+            try
+            {
+                Address addressToDelete = addressService.Delete(db.getConnection(), id);
+                return Ok(addressToDelete);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpPut]
-        public IHttpActionResult Add()
+        public IHttpActionResult Add([FromBody] Address address)
         {
-            //ClientScriptManager.RegisterClientScriptBlock(typeof(Page), "ClientScript", "<script> alert('Inserted successfully');</script>", true);
-            Address a1 = new Address();
-            a1.country = "Korea";
-            a1.city = "HSeoul";
-            a1.zipcode = "345325";
-            a1.street = "chanukunho";
-            a1.housenumber = 12;
-            Address addressToAdd = addressService.Insert(db.getConnection(), a1);
-            return Ok(addressToAdd);
+            try
+            {
+                Address addressToAdd = addressService.Insert(db.getConnection(), address);
+                return Ok(addressToAdd);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpPut]
-        public IHttpActionResult Update([FromUri]int id)
+        public IHttpActionResult Update([FromBody] Address address, int id)
         {
-
-            Address a1 = new Address();
-            a1.country = "Korea";
-            a1.city = "HSeoul";
-            a1.zipcode = "345325";
-            a1.street = "chanusfsrfsrfseunho";
-            a1.housenumber = 12;
-            Address addressToUpdate = addressService.Update(db.getConnection(), id, a1);
-            return Ok(addressToUpdate);
+            try {
+                Address addressToUpdate = addressService.Update(db.getConnection(), id, address);
+                return Ok(addressToUpdate);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
 

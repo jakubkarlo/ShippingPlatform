@@ -12,38 +12,56 @@ namespace ShippingPlatform.Manager
     class AddressesViewModel : INotifyPropertyChanged
     {
 
-        private List<Address> addresses;
-
-        ObservableCollection<Address> addr;
+        private List<Address> addr;
+        private DatabaseService databaseService;
+        AddressService addressService;
 
 
         public AddressesViewModel()
         {
-            addr = new ObservableCollection<Address>();
             DapperConfiguration.Configure();
-            DatabaseService DBService = new DatabaseService();
-            AddressService addressService = new AddressService();
-            addresses = addressService.getAll(DBService.getConnection()).ToList<Address>();
-            foreach (var address in addresses)
-            {
-                Addresses.Add(address);
-                
-            }
+            databaseService = new DatabaseService();
+            addressService = new AddressService();
+            addr = new List<Address>(addressService.getAll(databaseService.getConnection()).ToList());
           
         }
 
-        public ObservableCollection<Address> Addresses {
+        public void AddAddress(Address addressToAdd)
+        {
+            addressService.Insert(databaseService.getConnection(), addressToAdd);
+            //TODO update the view
+        }
+
+
+        public void UpdateAddress(Address addressToUpdate, int searchID)
+        {
+            addressService.Update(databaseService.getConnection(), searchID, addressToUpdate);
+            //TODO update the view
+        }
+
+        public void DeleteAddress(int searchID)
+        {
+            addressService.Delete(databaseService.getConnection(), searchID);
+            //TODO update the view
+        }
+
+
+
+        public List<Address> Addresses {
             get {
                 return addr;
             }
             set {
                 addr = value;
-                NotifyPropertyChanged("Addresses");
+                RaisePropertyChanged("Addresses");
             }
         }
 
+
+
+
         public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(String info)
+        private void RaisePropertyChanged(String info)
         {
             if (PropertyChanged != null)
             {
