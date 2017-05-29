@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShippingPlatform.Manager"
         mc:Ignorable="d"
-        Title="Amazing Shipping Platform Manager" Height="500" Width="800">
+        Title="Amazing Shipping Platform Manager" Height="500" Width="1150">
     <Window.Resources>
         <!--<local:className x:Key="randomName"> 
         Then in the code: Rectangle Fill = "Binding Path Password, Mode oneway, Converter ={StaticResource randomName-->
@@ -17,7 +17,7 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="300"></ColumnDefinition>
-                    <ColumnDefinition Width="500"></ColumnDefinition>
+                    <ColumnDefinition Width="850"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
                 <Menu Grid.Column="0">
@@ -87,7 +87,7 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="300"></ColumnDefinition>
-                    <ColumnDefinition Width="500"></ColumnDefinition>
+                    <ColumnDefinition Width="850"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Menu Grid.Column="0">
                     <TextBox Name="client_id" Width="150" Background="LightGray" DataContext="{Binding Path=SelectedItem, ElementName=clients}" Text="{Binding Path=id, Mode=OneWay}" IsReadOnly="True" ></TextBox>
@@ -98,8 +98,12 @@
                     <Label >Password</Label>
                     <TextBox Name="client_email" Width="150"  DataContext="{Binding Path=SelectedItem, ElementName=clients}" Text="{Binding Path=emailAddress, Mode=OneWay}"></TextBox>
                     <Label>Email</Label>
-                    <Button Width="150" Name="addClientBtn">Add</Button>
-                    <Button Width="150" Name="updateClientBtn">Update
+                    <TextBox Name="client_addressID" Width="150"  DataContext="{Binding Path=SelectedItem, ElementName=clients}" Text="{Binding Path=clientAddressID, Mode=OneWay}"></TextBox>
+                    <Label>Address ID</Label>
+                    <TextBox Name="client_orderID" Width="150"  DataContext="{Binding Path=SelectedItem, ElementName=clients}" Text="{Binding Path=orderID, Mode=OneWay}"></TextBox>
+                    <Label>Order ID</Label>
+                    <Button Width="150" Name="addClientBtn" Click="AddClientBtn_Click">Add</Button>
+                    <Button Width="150" Name="updateClientBtn" Click="UpdateClientBtn_Click">Update
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Style.Triggers>
@@ -112,7 +116,7 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button Width="150" Name="removeClientBtn">Remove
+                    <Button Width="150" Name="removeClientBtn" Click="RemoveClientBtn_Click">Remove
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Style.Triggers>
@@ -135,7 +139,8 @@
                         <DataGridTextColumn Header="Login" Binding="{Binding Path=login, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Password" Binding="{Binding Path=password, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Email" Binding="{Binding Path=emailAddress, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Country" Binding="{Binding Path=country, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Address ID" Binding="{Binding Path=clientAddressID, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Order ID" Binding="{Binding Path=orderID, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -146,7 +151,7 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="300"></ColumnDefinition>
-                    <ColumnDefinition Width="500"></ColumnDefinition>
+                    <ColumnDefinition Width="850"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Menu Grid.Column="0">
                     <TextBox Name="package_id" Width="150" Background="LightGray" DataContext="{Binding Path=SelectedItem, ElementName=packages}" Text="{Binding Path=id, Mode=OneWay}" IsReadOnly="True" ></TextBox>
@@ -161,8 +166,10 @@
                     <Label>Weight</Label>
                     <TextBox Name="package_content" Width="150"  DataContext="{Binding Path=SelectedItem, ElementName=packages}" Text="{Binding Path=content, Mode=OneWay}"></TextBox>
                     <Label>Content</Label>
-                    <Button Width="150" Name="addPackageBtn">Add</Button>
-                    <Button Width="150" Name="updatePackageBtn">Update
+                    <TextBox Name="package_orderID" Width="150"  DataContext="{Binding Path=SelectedItem, ElementName=packages}" Text="{Binding Path=orderID, Mode=OneWay}"></TextBox>
+                    <Label>Order ID</Label>
+                    <Button Width="150" Name="addPackageBtn" Click="AddPackageBtn_Click">Add</Button>
+                    <Button Width="150" Name="updatePackageBtn" Click="UpdatePackageBtn_Click">Update
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Style.Triggers>
@@ -175,7 +182,7 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button Width="150" Name="removePackageBtn">Remove
+                    <Button Width="150" Name="removePackageBtn" Click="RemovePackageBtn_Click">Remove
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Style.Triggers>
@@ -200,8 +207,7 @@
                         <DataGridTextColumn Header="Depth" Binding="{Binding Path=depth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Weight" Binding="{Binding Path=weight, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Content" Binding="{Binding Path=content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                        <!--You should add orderID here-->
-                        <DataGridTextColumn Header="Country" Binding="{Binding Path=country, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="OrderID" Binding="{Binding Path=orderID, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -211,7 +217,7 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="300"></ColumnDefinition>
-                    <ColumnDefinition Width="500"></ColumnDefinition>
+                    <ColumnDefinition Width="850"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Menu Grid.Column="0">
                     <TextBox Name="order_id" Width="150" Background="LightGray" DataContext="{Binding Path=SelectedItem, ElementName=orders}" Text="{Binding Path=id, Mode=OneWay}" IsReadOnly="True" ></TextBox>
@@ -222,10 +228,16 @@
                     <Label >Creation Date</Label>
                     <TextBox Name="order_pickup" Width="150"  DataContext="{Binding Path=SelectedItem, ElementName=orders}" Text="{Binding Path=pickupDate, Mode=OneWay}"></TextBox>
                     <Label>Pickup Date</Label>
+                    <TextBox Name="order_delivery" Width="150"  DataContext="{Binding Path=SelectedItem, ElementName=orders}" Text="{Binding Path=deliveryDate, Mode=OneWay}"></TextBox>
+                    <Label>Delivery Date</Label>
                     <TextBox Name="order_status" Width="150"  DataContext="{Binding Path=SelectedItem, ElementName=orders}" Text="{Binding Path=status, Mode=OneWay}"></TextBox>
                     <Label>Status</Label>
-                    <Button Width="150" Name="addOrderBtn">Add</Button>
-                    <Button Width="150" Name="updateOrderBtn">Update
+                    <TextBox Name="order_clientAddressID" Width="150"  DataContext="{Binding Path=SelectedItem, ElementName=orders}" Text="{Binding Path=clientAddressID, Mode=OneWay}"></TextBox>
+                    <Label>Sender Address ID</Label>
+                    <TextBox Name="order_recipientAddressID" Width="150"  DataContext="{Binding Path=SelectedItem, ElementName=orders}" Text="{Binding Path=recipientAddressID, Mode=OneWay}"></TextBox>
+                    <Label>Recipient Address ID</Label>
+                    <Button Width="150" Name="addOrderBtn" Click="AddOrderBtn_Click">Add</Button>
+                    <Button Width="150" Name="updateOrderBtn" Click="UpdateOrderBtn_Click">Update
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Style.Triggers>
@@ -238,7 +250,7 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button Width="150" Name="removeOrderBtn">Remove
+                    <Button Width="150" Name="removeOrderBtn" Click="RemoveOrderBtn_Click">Remove
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Style.Triggers>
@@ -261,9 +273,10 @@
                         <DataGridTextColumn Header="Reference Number" Binding="{Binding Path=referenceNumber, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Creation Date" Binding="{Binding Path=createdDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Pickup Date" Binding="{Binding Path=pickupDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Delivery Date" Binding="{Binding Path=deliveryDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Status" Binding="{Binding Path=status, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                        <!--You need client Address and Recipient Address-->
-                        <DataGridTextColumn Header="Country" Binding="{Binding Path=country, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Sender Address ID" Binding="{Binding Path=clientAddressID, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Recipient Address ID" Binding="{Binding Path=recipientAddressID, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -274,7 +287,7 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="300"></ColumnDefinition>
-                    <ColumnDefinition Width="500"></ColumnDefinition>
+                    <ColumnDefinition Width="850"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Menu Grid.Column="0">
                     <Label>Your order reference number</Label>
