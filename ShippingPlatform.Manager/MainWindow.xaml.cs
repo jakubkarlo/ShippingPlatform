@@ -364,7 +364,43 @@ namespace ShippingPlatform.Manager
 
         private void FindOrderBtn_Click(object sender, RoutedEventArgs e)
         {
+            Order trackingOrder = new Order();
+            OrderService orderService = new OrderService();
+            DatabaseService databaseService = new DatabaseService();
+            
 
+            try
+            {
+                if (order_to_track.Text == null)
+                {
+                    throw new Exception();
+                }
+                bool refNumberExists = false;
+                foreach (Order order in comboViewModel.ordersViewModel.Orders)
+                {
+                    
+                    if (order.referenceNumber == order_to_track.Text)
+                    {
+                        refNumberExists = true;
+                        trackingOrder = order;
+                    }
+
+                }
+                if (!refNumberExists)
+                {
+                    throw new Exception();
+                }
+                track_title.Content = "Order with reference number " + trackingOrder.referenceNumber + " information";
+                track_status.Content = "Current Status: " + trackingOrder.status;
+                track_pickup_date.Content = "Date of pickup: " + trackingOrder.pickupDate;
+                track_delivery_date.Content = "Date of delivery: " + trackingOrder.deliveryDate;
+                track_elapsed_time.Content = "Time of shipping process: " + (trackingOrder.deliveryDate - trackingOrder.pickupDate);
+
+            }
+            catch(Exception)
+            {
+                MessageBoxResult messageBox = MessageBox.Show("Empty or invalid reference number!", "Error");
+            }
         }
 
     }

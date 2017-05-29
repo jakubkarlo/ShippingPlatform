@@ -292,17 +292,14 @@
                 <Menu Grid.Column="0">
                     <Label>Your order reference number</Label>
                     <TextBox Name="order_to_track" Width="240"></TextBox>
-                    <Button Width="240" Content="Find Order" />
+                    <Button Width="240" Content="Find Order" Click="FindOrderBtn_Click" />
                 </Menu>
                 <StackPanel Grid.Column="1">
-                    <Label HorizontalAlignment="Center">Your order current status:</Label>
-                    <Label>Reference number</Label>
-                    <Label>Delivery address</Label>
-                    <Label>Pickup address</Label>
-                    <Label>Sender Name</Label>
-                    <Label>Status</Label>
-                    <Label>Assumed date of delivery</Label>
-                    <Label>Time of shipping process</Label>
+                    <Label HorizontalAlignment="Center" Name="track_title"></Label>
+                    <Label Name="track_status"></Label>
+                    <Label Name="track_pickup_date"></Label>
+                    <Label Name="track_delivery_date"></Label>
+                    <Label Name="track_elapsed_time"></Label>
                 </StackPanel>
             </Grid>
 
