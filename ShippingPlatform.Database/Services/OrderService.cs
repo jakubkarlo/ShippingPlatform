@@ -20,5 +20,21 @@ namespace ShippingPlatform.Database
         {
             return orderRepository.GetAll(connection);
         }
+
+        public Order Delete(IDbConnection connection, int searchID)
+        {
+            return orderRepository.Delete(connection, searchID);
+        }
+
+        public Order Insert(IDbConnection connection, Order newOrder)
+        {
+            return orderRepository.Insert(connection, newOrder);
+        }
+
+        public Order Update(IDbConnection connection, int searchID, Order newOrder)
+        {
+            return orderRepository.Update(connection, searchID, newOrder);
+        }
+
     }
 }

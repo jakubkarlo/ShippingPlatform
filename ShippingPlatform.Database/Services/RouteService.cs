@@ -20,5 +20,21 @@ namespace ShippingPlatform.Database
         {
             return routeRepository.GetAll(connection);
         }
+
+        public Route Delete(IDbConnection connection, int searchID)
+        {
+            return routeRepository.Delete(connection, searchID);
+        }
+
+        public Route Insert(IDbConnection connection, Route newRoute)
+        {
+            return routeRepository.Insert(connection, newRoute);
+        }
+
+        public Route Update(IDbConnection connection, int searchID, Route newRoute)
+        {
+            return routeRepository.Update(connection, searchID, newRoute);
+        }
+
     }
 }

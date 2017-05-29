@@ -67,7 +67,7 @@
                 </Menu>
 
                 <DataGrid Grid.Column="1" x:Name="addresses"
-                  ItemsSource="{Binding Path=Addresses, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  ItemsSource="{Binding Path=Addresses, Mode=TwoWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"
                   AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding Path=id, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
@@ -81,41 +81,217 @@
                 
          </Grid>
         </TabItem>
-        
-        
+
+
         <TabItem Header="Clients">
-            <DataGrid x:Name="clients"
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"></ColumnDefinition>
+                    <ColumnDefinition Width="500"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Menu Grid.Column="0">
+                    <TextBox Name="client_id" Width="150" Background="LightGray" DataContext="{Binding Path=SelectedItem, ElementName=clients}" Text="{Binding Path=id, Mode=OneWay}" IsReadOnly="True" ></TextBox>
+                    <Label>ID</Label>
+                    <TextBox Name="client_login" Width="150" DataContext="{Binding Path=SelectedItem, ElementName=clients}" Text="{Binding Path=login, Mode=OneWay}"></TextBox>
+                    <Label>Login</Label>
+                    <TextBox Name="client_password" Width="150"  DataContext="{Binding Path=SelectedItem, ElementName=clients}" Text="{Binding Path=password, Mode=OneWay}"></TextBox>
+                    <Label >Password</Label>
+                    <TextBox Name="client_email" Width="150"  DataContext="{Binding Path=SelectedItem, ElementName=clients}" Text="{Binding Path=emailAddress, Mode=OneWay}"></TextBox>
+                    <Label>Email</Label>
+                    <Button Width="150" Name="addClientBtn">Add</Button>
+                    <Button Width="150" Name="updateClientBtn">Update
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedItems.Count,ElementName=clients}"
+                                 Value="0">
+                                        <Setter Property="Visibility"
+                                Value="Hidden" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button Width="150" Name="removeClientBtn">Remove
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedItems.Count,ElementName=clients}"
+                                 Value="0">
+                                        <Setter Property="Visibility"
+                                Value="Hidden" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Menu>
+
+                <DataGrid Grid.Column="1"  x:Name="clients"
                   ItemsSource="{Binding Path=Clients, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding Path=id, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Login" Binding="{Binding Path=login, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Password" Binding="{Binding Path=password, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Email" Binding="{Binding Path=emailAddress, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                    <!--Those two are optional-->
-                    <DataGridTextColumn Header="Address" Binding="{Binding Path=clientAddress, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Order" Binding="{Binding Path=orderID, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-            <!-- Window.Resources are for global design-->
-            <!-- you have to make a converter with IConvertValue for example for password strength color converter-->
-
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Path=id, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Login" Binding="{Binding Path=login, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Password" Binding="{Binding Path=password, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Email" Binding="{Binding Path=emailAddress, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Country" Binding="{Binding Path=country, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
         </TabItem>
 
-        <TabItem Header="Logistic Centers">
 
-        </TabItem>
+        <TabItem Header="Packages">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"></ColumnDefinition>
+                    <ColumnDefinition Width="500"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Menu Grid.Column="0">
+                    <TextBox Name="package_id" Width="150" Background="LightGray" DataContext="{Binding Path=SelectedItem, ElementName=packages}" Text="{Binding Path=id, Mode=OneWay}" IsReadOnly="True" ></TextBox>
+                    <Label>ID</Label>
+                    <TextBox Name="package_height" Width="150" DataContext="{Binding Path=SelectedItem, ElementName=packages}" Text="{Binding Path=height, Mode=OneWay}"></TextBox>
+                    <Label>Height</Label>
+                    <TextBox Name="package_width" Width="150"  DataContext="{Binding Path=SelectedItem, ElementName=packages}" Text="{Binding Path=width, Mode=OneWay}"></TextBox>
+                    <Label >Width</Label>
+                    <TextBox Name="package_depth" Width="150"  DataContext="{Binding Path=SelectedItem, ElementName=packages}" Text="{Binding Path=depth, Mode=OneWay}"></TextBox>
+                    <Label>Depth</Label>
+                    <TextBox Name="package_weight" Width="150"  DataContext="{Binding Path=SelectedItem, ElementName=packages}" Text="{Binding Path=weight, Mode=OneWay}"></TextBox>
+                    <Label>Weight</Label>
+                    <TextBox Name="package_content" Width="150"  DataContext="{Binding Path=SelectedItem, ElementName=packages}" Text="{Binding Path=content, Mode=OneWay}"></TextBox>
+                    <Label>Content</Label>
+                    <Button Width="150" Name="addPackageBtn">Add</Button>
+                    <Button Width="150" Name="updatePackageBtn">Update
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedItems.Count,ElementName=packages}"
+                                 Value="0">
+                                        <Setter Property="Visibility"
+                                Value="Hidden" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button Width="150" Name="removePackageBtn">Remove
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedItems.Count,ElementName=packages}"
+                                 Value="0">
+                                        <Setter Property="Visibility"
+                                Value="Hidden" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Menu>
 
-        <TabItem Header="Notifications">
+                <DataGrid Grid.Column="1"  x:Name="packages"
+                  ItemsSource="{Binding Path=Packages, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Path=id, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Height" Binding="{Binding Path=height, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Width" Binding="{Binding Path=width, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Depth" Binding="{Binding Path=depth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Weight" Binding="{Binding Path=weight, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Content" Binding="{Binding Path=content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <!--You should add orderID here-->
+                        <DataGridTextColumn Header="Country" Binding="{Binding Path=country, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
 
         </TabItem>
         <TabItem Header="Orders">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"></ColumnDefinition>
+                    <ColumnDefinition Width="500"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Menu Grid.Column="0">
+                    <TextBox Name="order_id" Width="150" Background="LightGray" DataContext="{Binding Path=SelectedItem, ElementName=orders}" Text="{Binding Path=id, Mode=OneWay}" IsReadOnly="True" ></TextBox>
+                    <Label>ID</Label>
+                    <TextBox Name="order_ref" Width="150" DataContext="{Binding Path=SelectedItem, ElementName=orders}" Text="{Binding Path=referenceNumber, Mode=OneWay}"></TextBox>
+                    <Label>Reference Number</Label>
+                    <TextBox Name="order_created" Width="150"  DataContext="{Binding Path=SelectedItem, ElementName=orders}" Text="{Binding Path=createdDate, Mode=OneWay}"></TextBox>
+                    <Label >Creation Date</Label>
+                    <TextBox Name="order_pickup" Width="150"  DataContext="{Binding Path=SelectedItem, ElementName=orders}" Text="{Binding Path=pickupDate, Mode=OneWay}"></TextBox>
+                    <Label>Pickup Date</Label>
+                    <TextBox Name="order_status" Width="150"  DataContext="{Binding Path=SelectedItem, ElementName=orders}" Text="{Binding Path=status, Mode=OneWay}"></TextBox>
+                    <Label>Status</Label>
+                    <Button Width="150" Name="addOrderBtn">Add</Button>
+                    <Button Width="150" Name="updateOrderBtn">Update
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedItems.Count,ElementName=orders}"
+                                 Value="0">
+                                        <Setter Property="Visibility"
+                                Value="Hidden" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button Width="150" Name="removeOrderBtn">Remove
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedItems.Count,ElementName=orders}"
+                                 Value="0">
+                                        <Setter Property="Visibility"
+                                Value="Hidden" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Menu>
+
+                <DataGrid Grid.Column="1"  x:Name="orders"
+                  ItemsSource="{Binding Path=Orders, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Path=id, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Reference Number" Binding="{Binding Path=referenceNumber, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Creation Date" Binding="{Binding Path=createdDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Pickup Date" Binding="{Binding Path=pickupDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Status" Binding="{Binding Path=status, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                        <!--You need client Address and Recipient Address-->
+                        <DataGridTextColumn Header="Country" Binding="{Binding Path=country, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
 
         </TabItem>
-        <TabItem Header="Packages">
 
-        </TabItem>
-        <TabItem Header="Routes">
+        <TabItem Header="Tracking">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"></ColumnDefinition>
+                    <ColumnDefinition Width="500"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Menu Grid.Column="0">
+                    <Label>Your order reference number</Label>
+                    <TextBox Name="order_to_track" Width="240"></TextBox>
+                    <Button Width="240" Content="Find Order" />
+                </Menu>
+                <StackPanel Grid.Column="1">
+                    <Label HorizontalAlignment="Center">Your order current status:</Label>
+                    <Label>Reference number</Label>
+                    <Label>Delivery address</Label>
+                    <Label>Pickup address</Label>
+                    <Label>Sender Name</Label>
+                    <Label>Status</Label>
+                    <Label>Assumed date of delivery</Label>
+                    <Label>Time of shipping process</Label>
+                </StackPanel>
+            </Grid>
 
         </TabItem>
  

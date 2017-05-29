@@ -25,14 +25,20 @@ namespace ShippingPlatform.Manager
     /// </summary>
     public partial class MainWindow : Window
     {
-        private AddressesViewModel addrViewModel;
+
+        private CombiningViewModel comboViewModel;
 
         public MainWindow()
         {
             InitializeComponent();
-            addrViewModel = new AddressesViewModel();
 
-            addresses.DataContext = addrViewModel;
+            AddressesViewModel addrViewModel = new AddressesViewModel();
+            ClientsViewModel clientsViewModel = new ClientsViewModel();
+            comboViewModel = new CombiningViewModel(addrViewModel, clientsViewModel);
+
+            addresses.DataContext = comboViewModel.addressesViewModel;
+            clients.DataContext = comboViewModel.clientsViewModel;
+
 
         }
 
@@ -51,9 +57,11 @@ namespace ShippingPlatform.Manager
                 addressToAdd.street = ad_street.Text;
                 addressToAdd.housenumber = Int32.Parse(ad_housenumber.Text);
                 addressToAdd.zipcode = ad_zipcode.Text;
-                addrViewModel.AddAddress(addressToAdd);
+                comboViewModel.addressesViewModel.AddAddress(addressToAdd);
+               
 
                 MessageBoxResult messageBox = MessageBox.Show("New address inserted successfully!", "Success!");
+                addresses.DataContext = comboViewModel.addressesViewModel;
             }
             catch (Exception)
             {
@@ -78,7 +86,7 @@ namespace ShippingPlatform.Manager
                 addressToUpdate.street = ad_street.Text;
                 addressToUpdate.housenumber = Int32.Parse(ad_housenumber.Text);
                 addressToUpdate.zipcode = ad_zipcode.Text;
-                addrViewModel.UpdateAddress(addressToUpdate, Int32.Parse(ad_id.Text));
+                comboViewModel.addressesViewModel.UpdateAddress(addressToUpdate, Int32.Parse(ad_id.Text));
                
                 
 
@@ -102,7 +110,7 @@ namespace ShippingPlatform.Manager
                     throw new Exception();
                 }
 
-                addrViewModel.DeleteAddress(Int32.Parse(ad_id.Text));
+                comboViewModel.addressesViewModel.DeleteAddress(Int32.Parse(ad_id.Text));
                 MessageBoxResult messageBox = MessageBox.Show("Address removed successfully!", "Success!");
             }
             catch (Exception)

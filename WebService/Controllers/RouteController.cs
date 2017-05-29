@@ -9,30 +9,29 @@ using System.Web.Http;
 
 namespace WebService.Controllers
 {
-    public class ClientController : ApiController
+    public class RouteController : ApiController
     {
-
         private DatabaseService db;
-        private ClientService clientService;
+        private RouteService routeService;
 
-        public ClientController()
+        public RouteController()
         {
             db = new DatabaseService();
-            clientService = new ClientService();
+            routeService = new RouteService();
         }
 
         [HttpGet]
         public IHttpActionResult GetAll()
-        {        
-            List<Client> allClients = (List<Client>)clientService.getAll(db.getConnection());
-            return Ok(allClients);
+        {
+            List<Route> allRoutes = (List<Route>)routeService.getAll(db.getConnection());
+            return Ok(allRoutes);
         }
 
         [HttpGet]
         public IHttpActionResult getOne(int id)
         {
-            Client specificClient = clientService.getOne(db.getConnection(), id);
-            return Ok(specificClient);
+            Route specificRoute = routeService.getOne(db.getConnection(), id);
+            return Ok(specificRoute);
         }
 
 
@@ -41,8 +40,8 @@ namespace WebService.Controllers
         {
             try
             {
-                Client clientToDelete = clientService.Delete(db.getConnection(), id);
-                return Ok(clientToDelete);
+                Route routeToDelete = routeService.Delete(db.getConnection(), id);
+                return Ok(routeToDelete);
             }
             catch (Exception e)
             {
@@ -51,12 +50,12 @@ namespace WebService.Controllers
         }
 
         [HttpPut]
-        public IHttpActionResult Add([FromBody] Client client)
+        public IHttpActionResult Add([FromBody] Route route)
         {
             try
             {
-                Client clientToAdd = clientService.Insert(db.getConnection(), client);
-                return Ok(clientToAdd);
+                Route routeToAdd = routeService.Insert(db.getConnection(), route);
+                return Ok(routeToAdd);
             }
             catch (Exception e)
             {
@@ -65,12 +64,12 @@ namespace WebService.Controllers
         }
 
         [HttpPut]
-        public IHttpActionResult Update([FromBody] Client client, int id)
+        public IHttpActionResult Update([FromBody] Route route, int id)
         {
             try
             {
-                Client clientToUpdate = clientService.Update(db.getConnection(), id, client);
-                return Ok(clientToUpdate);
+                Route routeToUpdate = routeService.Update(db.getConnection(), id, route);
+                return Ok(routeToUpdate);
             }
             catch (Exception e)
             {

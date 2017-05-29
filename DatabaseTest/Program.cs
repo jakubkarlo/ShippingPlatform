@@ -24,6 +24,8 @@ namespace DatabaseTest
             PackageService package = new PackageService();
             RouteService route = new RouteService();
 
+
+
             foreach (var a in client.getAll(service.getConnection()))
             {
                 Console.WriteLine(a.ToString() + "\n");

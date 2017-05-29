@@ -63,6 +63,9 @@
     </ApplicationDefinition>
     <Compile Include="ClientsViewModel.cs" />
     <Compile Include="AddressesViewModel.cs" />
+    <Compile Include="CombiningViewModel.cs" />
+    <Compile Include="OrdersViewModel.cs" />
+    <Compile Include="PackagesViewModel.cs" />
     <Compile Include="shippingplatformDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

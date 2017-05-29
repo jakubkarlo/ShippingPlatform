@@ -9,30 +9,29 @@ using System.Web.Http;
 
 namespace WebService.Controllers
 {
-    public class ClientController : ApiController
+    public class PackageController : ApiController
     {
-
         private DatabaseService db;
-        private ClientService clientService;
+        private PackageService packageService;
 
-        public ClientController()
+        public PackageController()
         {
             db = new DatabaseService();
-            clientService = new ClientService();
+            packageService = new PackageService();
         }
 
         [HttpGet]
         public IHttpActionResult GetAll()
-        {        
-            List<Client> allClients = (List<Client>)clientService.getAll(db.getConnection());
-            return Ok(allClients);
+        {
+            List<Package> allPackages = (List<Package>)packageService.getAll(db.getConnection());
+            return Ok(allPackages);
         }
 
         [HttpGet]
         public IHttpActionResult getOne(int id)
         {
-            Client specificClient = clientService.getOne(db.getConnection(), id);
-            return Ok(specificClient);
+            Package specificPackage = packageService.getOne(db.getConnection(), id);
+            return Ok(specificPackage);
         }
 
 
@@ -41,8 +40,8 @@ namespace WebService.Controllers
         {
             try
             {
-                Client clientToDelete = clientService.Delete(db.getConnection(), id);
-                return Ok(clientToDelete);
+                Package packageToDelete = packageService.Delete(db.getConnection(), id);
+                return Ok(packageToDelete);
             }
             catch (Exception e)
             {
@@ -51,12 +50,12 @@ namespace WebService.Controllers
         }
 
         [HttpPut]
-        public IHttpActionResult Add([FromBody] Client client)
+        public IHttpActionResult Add([FromBody] Package package)
         {
             try
             {
-                Client clientToAdd = clientService.Insert(db.getConnection(), client);
-                return Ok(clientToAdd);
+                Package packageToAdd = packageService.Insert(db.getConnection(), package);
+                return Ok(packageToAdd);
             }
             catch (Exception e)
             {
@@ -65,12 +64,12 @@ namespace WebService.Controllers
         }
 
         [HttpPut]
-        public IHttpActionResult Update([FromBody] Client client, int id)
+        public IHttpActionResult Update([FromBody] Package package, int id)
         {
             try
             {
-                Client clientToUpdate = clientService.Update(db.getConnection(), id, client);
-                return Ok(clientToUpdate);
+                Package packageToUpdate = packageService.Update(db.getConnection(), id, package);
+                return Ok(packageToUpdate);
             }
             catch (Exception e)
             {

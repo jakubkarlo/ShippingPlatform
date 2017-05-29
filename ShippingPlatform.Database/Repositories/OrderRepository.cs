@@ -38,5 +38,24 @@ namespace ShippingPlatform.Database
             },
            splitOn: "addressID").ToList();
         }
+
+        public Order Delete(IDbConnection connection, int searchId)
+        {
+            return connection.Query<Order>("DELETE FROM orders WHERE orderID = @id", new { id = searchId }).FirstOrDefault();
+        }
+
+        public Order Insert(IDbConnection connection, Order newOrder)
+        {
+            return  connection.Query<Order>("INSERT INTO orders(recipientAddressID, clientAddressID, referenceNumber, createdDate, pickupDate, deliveryDate, status) values(@recipientAddressID, @clientAddressID, @referenceNumber, @createdDate, @pickupDate, @deliveryDate, @status)",
+                new { recipientAddressID = newOrder.recipientAddressID, clientAddressID = newOrder.clientAddressID, referenceNumber = newOrder.referenceNumber, createdDate = newOrder.createdDate, pickupDate = newOrder.pickupDate, deliveryDate = newOrder.deliveryDate, status = newOrder.status }).FirstOrDefault();
+        }
+
+
+        public Order Update(IDbConnection connection, int searchID, Order newOrder)
+        {
+            return connection.Query<Order>("UPDATE orders SET recipientAddressID=@recipientAddressID, clientAddressID=@clientAddressID, referenceNumber=@referenceNumber, createdDate=@createdDate, pickupDate=@pickupDate, deliveryDate=@deliveryDate, status=@status WHERE orderID =@id",
+                new { id = searchID, recipientAddressID = newOrder.recipientAddressID, clientAddressID = newOrder.clientAddressID, referenceNumber = newOrder.referenceNumber, createdDate = newOrder.createdDate, pickupDate = newOrder.pickupDate, deliveryDate = newOrder.deliveryDate, status = newOrder.status }).FirstOrDefault();
+        }
+
     }
 }

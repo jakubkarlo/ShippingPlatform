@@ -47,5 +47,24 @@ namespace ShippingPlatform.Database
              },
              splitOn:"addressID, routeID,addressID,addressID").ToList();
         }
+
+        public LogisticCenter Delete(IDbConnection connection, int searchId)
+        {
+            return connection.Query<LogisticCenter>("DELETE FROM logistic_centers WHERE logisticCenterID = @id", new { id = searchId }).FirstOrDefault();
+        }
+
+        public LogisticCenter Insert(IDbConnection connection, LogisticCenter newCenter)
+        {
+            return  connection.Query<LogisticCenter>("INSERT INTO logistic_centers(name, addressID, shippingRouteID) values(@name, @addressID, @shippingRouteID)",
+                new { name = newCenter.name, addressID = newCenter.logisticCenterAddressID, shippingRouteID = newCenter.shippingRouteID }).FirstOrDefault();
+        }
+
+
+        public LogisticCenter Update(IDbConnection connection, int searchID, LogisticCenter newCenter)
+        {
+            return connection.Query<LogisticCenter>("UPDATE logistic_centers SET name=@name, addressID=@addressID, shippingRouteID=@shippingRouteID WHERE logisticCenterID =@id",
+                new { id = searchID, name = newCenter.name, addressID = newCenter.logisticCenterAddressID, shippingRouteID = newCenter.shippingRouteID }).FirstOrDefault();
+        }
+
     }
 }

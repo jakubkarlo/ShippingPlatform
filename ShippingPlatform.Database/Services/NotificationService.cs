@@ -20,5 +20,21 @@ namespace ShippingPlatform.Database
         {
             return notificationRepository.GetAll(connection);
         }
+
+        public Notification Delete(IDbConnection connection, int searchID)
+        {
+            return notificationRepository.Delete(connection, searchID);
+        }
+
+        public Notification Insert(IDbConnection connection, Notification newNotification)
+        {
+            return notificationRepository.Insert(connection, newNotification);
+        }
+
+        public Notification Update(IDbConnection connection, int searchID, Notification newNotification)
+        {
+            return notificationRepository.Update(connection, searchID, newNotification);
+        }
+
     }
 }

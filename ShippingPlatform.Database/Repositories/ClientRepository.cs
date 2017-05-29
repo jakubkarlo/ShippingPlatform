@@ -52,20 +52,22 @@ namespace ShippingPlatform.Database
             return connection.Query<Client>("DELETE FROM clients WHERE clientID = @id", new { id = searchId }).FirstOrDefault();
         }
 
-        //public Address Insert(IDbConnection connection, Address newAddress)
-        //{
-        //    return connection.Query<Address>("INSERT INTO addresses(country, city, zipcode, street, housenumber) values(@country, @city, @zipcode, @street, @housenumber)",
-        //        new { country = newAddress.country, city = newAddress.city, zipcode = newAddress.zipcode, street = newAddress.street, housenumber = newAddress.housenumber }).FirstOrDefault();
-
-        //}
 
 
-        //public Address Update(IDbConnection connection, int searchID, Address newAddress)
-        //{
+        public Client Insert(IDbConnection connection, Client newClient)
+        {
+            return connection.Query<Client>("INSERT INTO clients(clientAddressID, orderID, login, password, emailAddress) values(@clientAddressID, @orderID, @login, @password, @emailAddress)",
+                new { clientAddressID = newClient.clientAddressID, orderID = newClient.orderID, login = newClient.login, password =newClient.password, emailAddress = newClient.emailAddress}).FirstOrDefault();
 
-        //    return connection.Query<Address>("UPDATE addresses SET country=@country, city=@city,zipcode=@zipcode,street=@street,housenumber=@housenumber WHERE addressID=@id",
-        //        new { id = searchID, country = newAddress.country, city = newAddress.city, zipcode = newAddress.zipcode, street = newAddress.street, housenumber = newAddress.housenumber }).FirstOrDefault();
+        }
 
-        //}
+
+        public Client Update(IDbConnection connection, int searchID, Client newClient)
+        {
+            return connection.Query<Client>("UPDATE clients SET clientAddressID=@clientAddressID, orderID=@orderID, login=@login, password=@password, emailAddress=@emailAddress WHERE clientID = @id",
+                new { id = searchID, clientAddressID = newClient.clientAddressID, orderID = newClient.orderID, login = newClient.login, password = newClient.password, emailAddress = newClient.emailAddress }).FirstOrDefault();
+
+        }
+
     }
 }

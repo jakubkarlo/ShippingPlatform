@@ -10,17 +10,17 @@ namespace ShippingPlatform.Manager
     class ClientsViewModel
     {
 
-        private List<Client> clients;
+        private List<Address> clients;
 
         public ClientsViewModel()
         {
-            DapperConfiguration.Configure();
+
             DatabaseService DBService = new DatabaseService();
-            ClientService clientService = new ClientService();
-            clients = clientService.getAll(DBService.getConnection()).ToList<Client>();
+            AddressService addressService = new AddressService();
+            clients = addressService.getAll(DBService.getConnection()).ToList<Address>();
         }
 
-        public List<Client> Clients {
+        public List<Address> Clients {
             get {
                 return clients;
             }

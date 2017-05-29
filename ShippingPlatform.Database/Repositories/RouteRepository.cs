@@ -50,5 +50,24 @@ namespace ShippingPlatform.Database
            },
            splitOn: "addressID,addressID,orderID,addressID,addressID").ToList();
         }
+
+        public Route Delete(IDbConnection connection, int searchId)
+        {
+            return connection.Query<Route>("DELETE FROM routes WHERE routeID = @id", new { id = searchId }).FirstOrDefault();
+        }
+
+        public Route Insert(IDbConnection connection, Route newRoute)
+        {
+            return connection.Query<Route>("INSERT INTO routes(startAddressID, endAddressID, startTime, endTime, orderID) values(@startAddressID, @endAddressID, @startTime, @endTime, @orderID)",
+                new { startAddressID = newRoute.startAddressID, endAddressID = newRoute.endAddressID, startTime = newRoute.startTime, endTime = newRoute.endTime, orderID = newRoute.orderID }).FirstOrDefault();
+        }
+
+
+        public Route Update(IDbConnection connection, int searchID, Route newRoute)
+        {
+            return connection.Query<Route>("UPDATE routes SET startAddressID=@startAddressID, endAddressID=@endAddressID, startTime=@startTime, endTime=@endTime, orderID=@orderID WHERE routeID =@id",
+                new { id = searchID, startAddressID = newRoute.startAddressID, endAddressID = newRoute.endAddressID, startTime = newRoute.startTime, endTime = newRoute.endTime, orderID = newRoute.orderID }).FirstOrDefault();
+        }
+
     }
 }

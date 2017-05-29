@@ -42,5 +42,23 @@ namespace ShippingPlatform.Database
             },
            splitOn: "orderID,addressID,addressID").ToList();
         }
+
+        public Package Delete(IDbConnection connection, int searchId)
+        {
+            return connection.Query<Package>("DELETE FROM packages WHERE packageID = @id", new { id = searchId }).FirstOrDefault();
+        }
+
+        public Package Insert(IDbConnection connection, Package newPackage)
+        {
+            return connection.Query<Package>("INSERT INTO packages(height, width, depth, weight, content, orderID) values(@height, @width, @depth, @weight, @content, @orderID)",
+                new { height = newPackage.height, width = newPackage.width, depth = newPackage.depth, weight = newPackage.weight, content = newPackage.content, orderID = newPackage.orderID }).FirstOrDefault();
+        }
+
+
+        public Package Update(IDbConnection connection, int searchID, Package newPackage)
+        {
+            return connection.Query<Package>("UPDATE packages SET height=@height, width=@width, depth=@depth, weight=@weight, content=@content, orderID=@orderID WHERE packageID =@id",
+                new { id = searchID, height = newPackage.height, width = newPackage.width, depth = newPackage.depth, weight = newPackage.weight, content = newPackage.content, orderID = newPackage.orderID }).FirstOrDefault();
+        }
     }
 }
