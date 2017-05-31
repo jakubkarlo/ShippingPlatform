@@ -27,7 +27,7 @@ namespace ShippingPlatform
                 "\nDate: " + timestamp +
                 "\nAttachment ID: " + attachmentID +
                 "\nMessage: " + message + "\n";
-            //add the order to that
+
         }
     }
 }

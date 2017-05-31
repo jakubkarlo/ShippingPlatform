@@ -16,9 +16,6 @@ namespace WebService.Controllers
 
     public class AddressController : ApiController
     {
-
-
-
         private DatabaseService db;
         private AddressService addressService;
 

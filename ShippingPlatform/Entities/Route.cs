@@ -8,12 +8,10 @@ namespace ShippingPlatform
 {
     public class Route : BaseObject
     {
-        //for database management
+
         public int startAddressID { get; set; }
         public int endAddressID { get; set; }
         public int orderID { get; set; }
-
-        //real needed properties
         public Address startAddress { get; set; }
         public Address endAddress { get; set; }
         public DateTime startTime { get; set; }
