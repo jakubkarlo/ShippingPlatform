@@ -8,6 +8,7 @@ namespace ShippingPlatform
 {
     public class Address : BaseObject
     {
+
         public string country { get; set; }
         public string city{ get; set; }
         public string zipcode{ get; set; }
@@ -18,13 +19,6 @@ namespace ShippingPlatform
         {
             return "ID: " + id + ", " + street + " " + housenumber + ", " + zipcode + " " + city + ", " + country;
             
-            //optional
-            //return "AddressID: " + id +
-            //    "\nCountry: " + country + 
-            //    "\nCity: " + city + 
-            //    "\nZipcode: " + zipcode + 
-            //    "\nStreet: " + street + 
-            //    "\nHousenumber: " + housenumber + "\n"; 
         }
 
     }

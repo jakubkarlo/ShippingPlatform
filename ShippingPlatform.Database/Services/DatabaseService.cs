@@ -19,11 +19,11 @@ namespace ShippingPlatform.Database
         {
             MySqlConnectionStringBuilder connectionBuilder = new MySqlConnectionStringBuilder();
 
-            //hardcoded right now
             connectionBuilder.Server = "localhost";
             connectionBuilder.UserID = "root";
             connectionBuilder.Password = "root";
             connectionBuilder.Database = "shippingplatform";
+
 
             string connectionString = connectionBuilder.GetConnectionString(true);
 

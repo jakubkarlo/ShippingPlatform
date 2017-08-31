@@ -14,8 +14,7 @@ namespace ShippingPlatform
         public DateTime pickupDate { get; set; }
         public DateTime deliveryDate { get; set; }
         public string status { get; set; }
-        public List<Route> routes { get; set; }
-        public List<Package> packages { get; set; }
+
 
         public override string ToString()
         {

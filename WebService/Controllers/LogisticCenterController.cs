@@ -13,53 +13,69 @@ namespace WebService.Controllers
     {
 
         private DatabaseService db;
-        private LogisticCenterService LogisticCenterService;
+        private LogisticCenterService logisticCenterService;
 
         public LogisticCenterController()
         {
             db = new DatabaseService();
-            LogisticCenterService = new LogisticCenterService();
+            logisticCenterService = new LogisticCenterService();
         }
 
         [HttpGet]
         public IHttpActionResult GetAll()
         {
-            List<LogisticCenter> allCenters = (List<LogisticCenter>)LogisticCenterService.getAll(db.getConnection());
+            List<LogisticCenter> allCenters = (List<LogisticCenter>)logisticCenterService.getAll(db.getConnection());
             return Ok(allCenters);
         }
 
         [HttpGet]
         public IHttpActionResult getOne(int id)
         {
-            LogisticCenter specificLogisticCenter = LogisticCenterService.getOne(db.getConnection(), id);
+            LogisticCenter specificLogisticCenter = logisticCenterService.getOne(db.getConnection(), id);
             return Ok(specificLogisticCenter);
         }
 
-        //public IHttpActionResult search(string searchTerm)
-        //{
-        //    List<LogisticCenter> searchResult = LogisticCenterService.Search(searchTerm);
-        //    return Ok(searchResult);
-        //}
-
         [HttpDelete]
-        public IHttpActionResult delete([FromUri]int id)
-        {
-            return NotFound();
-        }
-
-        [HttpPost]
-        public IHttpActionResult Save([FromBody]LogisticCenter LogisticCenter) // we want to add it from body json object
+        public IHttpActionResult Delete([FromUri]int id)
         {
             try
             {
-                // do some stuff here
-                //new LogisticCenterService.Save(LogisticCenter);
-                return Ok();
+                LogisticCenter logisticCenterToDelete = logisticCenterService.Delete(db.getConnection(), id);
+                return Ok(logisticCenterToDelete);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                return BadRequest(ex.ToString());
+                return BadRequest(e.Message);
             }
+        }
+
+        [HttpPut]
+        public IHttpActionResult Add([FromBody] LogisticCenter logisticCenter)
+        {
+            try
+            {
+                LogisticCenter logisticCenterToAdd = logisticCenterService.Insert(db.getConnection(), logisticCenter);
+                return Ok(logisticCenterToAdd);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPut]
+        public IHttpActionResult Update([FromBody] LogisticCenter logisticCenter, int id)
+        {
+            try
+            {
+                LogisticCenter logisticCenterToUpdate = logisticCenterService.Update(db.getConnection(), id, logisticCenter);
+                return Ok(logisticCenterToUpdate);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        
         }
     }
 }

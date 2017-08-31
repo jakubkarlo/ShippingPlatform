@@ -8,15 +8,15 @@ namespace ShippingPlatform
 {
     public class Route : BaseObject
     {
-        //for database management
+
         public int startAddressID { get; set; }
         public int endAddressID { get; set; }
-
-        //real needed properties
+        public int orderID { get; set; }
         public Address startAddress { get; set; }
         public Address endAddress { get; set; }
         public DateTime startTime { get; set; }
         public DateTime endTime { get; set; }
+        public Order order { get; set; }
 
         public override string ToString()
         {
@@ -25,8 +25,8 @@ namespace ShippingPlatform
                 "\nStart Address: " + startAddress +
                 "\nStart Time: " + startTime +
                 "\nEnd Address: " + endAddress +
-                "\nEnd Time: " + endTime + "\n";
-                //"\nOrder: " + order + "\n"; 
+                "\nEnd Time: " + endTime +
+                "\nOrder: " + order + "\n"; 
         }
 
 

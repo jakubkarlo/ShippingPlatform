@@ -1,7 +1,0 @@
-D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\ShippingPlatform\bin\Debug\ShippingPlatform.dll.config
-D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\ShippingPlatform\bin\Debug\ShippingPlatform.dll
-D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\ShippingPlatform\bin\Debug\ShippingPlatform.pdb
-D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\ShippingPlatform\bin\Debug\MySql.Data.dll
-D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\ShippingPlatform\obj\Debug\ShippingPlatform.Model.csprojResolveAssemblyReference.cache
-D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\ShippingPlatform\obj\Debug\ShippingPlatform.dll
-D:\Carlo\VisualStudioProjects\.net Software Development\ShippingPlatform\ShippingPlatform\obj\Debug\ShippingPlatform.pdb

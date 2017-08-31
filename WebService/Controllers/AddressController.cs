@@ -1,4 +1,6 @@
-﻿using ShippingPlatform;
+﻿
+
+using ShippingPlatform;
 using ShippingPlatform.Database;
 using System;
 using System.Collections.Generic;
@@ -6,12 +8,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.UI;
 
 namespace WebService.Controllers
 {
+
+
     public class AddressController : ApiController
     {
-
         private DatabaseService db;
         private AddressService addressService;
 
@@ -19,46 +23,79 @@ namespace WebService.Controllers
         {
             db = new DatabaseService();
             addressService = new AddressService();
+
         }
 
         [HttpGet]
         public IHttpActionResult GetAll()
-        {        
-            List<Address> allClients = (List<Address>)addressService.getAll(db.getConnection());
-            return Ok(allClients);
+        {
+            try {
+                List<Address> allClients = (List<Address>)addressService.getAll(db.getConnection());
+                return Ok(allClients);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpGet]
-        public IHttpActionResult getOne(int id)
+        public IHttpActionResult GetOne(int id)
         {
-            Address specificAddress = addressService.getOne(db.getConnection(), id);
-            return Ok(specificAddress);
+            try
+            {
+                Address specificAddress = addressService.getOne(db.getConnection(), id);
+                return Ok(specificAddress);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
-        //public IHttpActionResult search(string searchTerm)
-        //{
-        //    List<Address> searchResult = addressService.Search(searchTerm);
-        //    return Ok(searchResult);
-        //}
 
         [HttpDelete]
-        public IHttpActionResult delete([FromUri]int id)
+        public IHttpActionResult Delete([FromUri]int id)
         {
-            return NotFound();
+            try
+            {
+                Address addressToDelete = addressService.Delete(db.getConnection(), id);
+                return Ok(addressToDelete);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
-        [HttpPost]
-        public IHttpActionResult Save([FromBody]Address address) // we want to add it from body json object
+        [HttpPut]
+        public IHttpActionResult Add([FromBody] Address address)
         {
-            try {
-                // do some stuff here
-                //new AddressService.Save(address);
-                return Ok();
-            }
-            catch (Exception ex)
+            try
             {
-                return BadRequest(ex.ToString());
+                Address addressToAdd = addressService.Insert(db.getConnection(), address);
+                return Ok(addressToAdd);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
             }
         }
+
+        [HttpPut]
+        public IHttpActionResult Update([FromBody] Address address, int id)
+        {
+            try {
+                Address addressToUpdate = addressService.Update(db.getConnection(), id, address);
+                return Ok(addressToUpdate);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+
+     
     }
 }

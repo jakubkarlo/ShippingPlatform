@@ -20,9 +20,20 @@ namespace ShippingPlatform.Database
         {
             return addressRepository.GetAll(connection);
         }
-        public void Insert(IDbConnection connection, string country, string city, string zipcode, string street, int housenumber)
+   
+        public Address Insert (IDbConnection connection, Address newAddress)
         {
-            addressRepository.Insert(connection,country,city,zipcode,street,housenumber);
+            return addressRepository.Insert(connection, newAddress);
+        }
+
+        public Address Update(IDbConnection connection, int searchID, Address newAddress)
+        {
+            return addressRepository.Update(connection, searchID, newAddress);
+        }
+
+        public Address Delete(IDbConnection connection, int searchID)
+        {
+            return addressRepository.Delete(connection, searchID);
         }
     }
 }

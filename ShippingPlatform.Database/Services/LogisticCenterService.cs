@@ -20,5 +20,20 @@ namespace ShippingPlatform.Database
         {
             return logisticCenterRepository.GetAll(connection);
         }
+
+        public LogisticCenter Delete(IDbConnection connection, int searchID)
+        {
+            return logisticCenterRepository.Delete(connection, searchID);
+        }
+
+        public LogisticCenter Insert(IDbConnection connection, LogisticCenter newLogisticCenter)
+        {
+            return logisticCenterRepository.Insert(connection, newLogisticCenter);
+        }
+
+        public LogisticCenter Update(IDbConnection connection, int searchID, LogisticCenter newLogisticCenter)
+        {
+            return logisticCenterRepository.Update(connection, searchID, newLogisticCenter);
+        }
     }
 }

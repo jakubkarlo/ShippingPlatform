@@ -20,5 +20,21 @@ namespace ShippingPlatform.Database
         {
             return packageRepository.GetAll(connection);
         }
+
+        public Package Delete(IDbConnection connection, int searchID)
+        {
+            return packageRepository.Delete(connection, searchID);
+        }
+
+        public Package Insert(IDbConnection connection, Package newPackage)
+        {
+            return packageRepository.Insert(connection, newPackage);
+        }
+
+        public Package Update(IDbConnection connection, int searchID, Package newPackage)
+        {
+            return packageRepository.Update(connection, searchID, newPackage);
+        }
+
     }
 }

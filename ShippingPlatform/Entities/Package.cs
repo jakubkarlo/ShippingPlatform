@@ -8,6 +8,9 @@ namespace ShippingPlatform
 {
     public class Package : BaseObject 
     {
+        public int orderID { get; set; }
+        public Order order { get; set; }
+
         public double height { get; set; }
         public double width { get; set; }
         public double depth { get; set; }
@@ -21,7 +24,8 @@ namespace ShippingPlatform
                 "\nWidth: " + width +
                 "\nDepth: " + depth +
                 "\nWeight: " + weight +
-                "\nContent: " + content + "\n";
+                "\nContent: " + content +
+                "\nOrder: " + order + "\n";
         }
     }
 }

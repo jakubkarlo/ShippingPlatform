@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ShippingPlatform.Database;
-
+using ShippingPlatform;
 
 namespace DatabaseTest
 {
@@ -13,9 +13,9 @@ namespace DatabaseTest
         static void Main(string[] args)
         {
 
+
             DapperConfiguration.Configure();
             DatabaseService service = new DatabaseService();
-
             AddressService addressService = new AddressService();
             ClientService client = new ClientService();
             LogisticCenterService center = new LogisticCenterService();
@@ -24,19 +24,41 @@ namespace DatabaseTest
             PackageService package = new PackageService();
             RouteService route = new RouteService();
 
-            foreach(var a in client.getAll(service.getConnection())) 
+
+
+            foreach (var a in client.getAll(service.getConnection()))
             {
                 Console.WriteLine(a.ToString() + "\n");
             }
-   
-            
-            Console.WriteLine(addressService.getOne(service.getConnection(), 1)+"\n");
-            Console.WriteLine(client.getOne(service.getConnection(), 1)+"\n");
-            Console.WriteLine(center.getOne(service.getConnection(), 1) + "\n");
-            Console.WriteLine(notify.getOne(service.getConnection(), 1) + "\n");
-            Console.WriteLine(order.getOne(service.getConnection(), 1) + "\n");
-            Console.WriteLine(package.getOne(service.getConnection(), 1) + "\n");
-            Console.WriteLine(route.getOne(service.getConnection(), 1) + "\n");
+            foreach (var a in center.getAll(service.getConnection()))
+            {
+                Console.WriteLine(a.ToString() + "\n");
+            }
+            foreach (var a in order.getAll(service.getConnection()))
+            {
+                Console.WriteLine(a.ToString() + "\n");
+            }
+            foreach (var a in notify.getAll(service.getConnection()))
+            {
+                Console.WriteLine(a.ToString() + "\n");
+            }
+            foreach (var a in route.getAll(service.getConnection()))
+            {
+                Console.WriteLine(a.ToString() + "\n");
+            }
+            foreach (var a in package.getAll(service.getConnection()))
+            {
+                Console.WriteLine(a.ToString() + "\n");
+            }
+
+
+            //Console.WriteLine(addressService.getOne(service.getConnection(), 1)+"\n");
+            //Console.WriteLine(client.getOne(service.getConnection(), 1)+"\n");
+            //Console.WriteLine(center.getOne(service.getConnection(), 1) + "\n");
+            //Console.WriteLine(notify.getOne(service.getConnection(), 1) + "\n");
+            //Console.WriteLine(order.getOne(service.getConnection(), 1) + "\n");
+            //Console.WriteLine(package.getOne(service.getConnection(), 1) + "\n");
+            //Console.WriteLine(route.getOne(service.getConnection(), 1) + "\n");
             Console.ReadKey();
 
         }
